@@ -1,11 +1,14 @@
 <?php
 
-use App\Http\Controllers\DokterController;
-use App\Http\Controllers\JadwalDokterController;
-use App\Http\Controllers\JanjiTemuController;
-use App\Http\Controllers\LaporanController;
-use App\Http\Controllers\PasienController;
-use App\Http\Controllers\RekamMedisController;
+use App\Http\Controllers\Dokter\JadwalController;
+use App\Http\Controllers\Dokter\JanjiTemuDokterController;
+use App\Http\Controllers\Dokter\RekamMedisDokterController;
+use App\Http\Controllers\Admin\DokterController;
+use App\Http\Controllers\Admin\JadwalDokterController;
+use App\Http\Controllers\Admin\JanjiTemuController;
+use App\Http\Controllers\Admin\LaporanController;
+use App\Http\Controllers\Admin\PasienController;
+use App\Http\Controllers\Admin\RekamMedisController;
 use Illuminate\Support\Facades\Route;
 
 require __DIR__ . '/auth.php';
@@ -60,4 +63,10 @@ Route::middleware(['auth', 'userAkses:dokter'])->group(function () {
     Route::get('/dokter/dashboard', function () {
         return view('dokter.dashboard');
     })->name('dokter.dashboard');
+
+    Route::resource('/dokter/jadwal', JadwalController::class);
+    Route::resource('/dokter/janjitemu', JanjiTemuDokterController::class);
+    Route::get('/dokter/available-slots', [JanjiTemuDokterController::class, 'getAvailableSlots']);
+
+    Route::resource('/dokter/janjitemu/{janjitemu_id}/rekammedis', RekamMedisDokterController::class);
 });

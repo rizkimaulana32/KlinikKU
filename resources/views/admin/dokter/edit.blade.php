@@ -2,9 +2,9 @@
 
 @section('content')
     <section class="p-4 bg-white dark:bg-gray-900 sm:ml-64">
-        <div class="max-w-3xl px-4 py-8 mx-auto md:py-16">
+        <div class="max-w-3xl px-4 pt-8 mx-auto md:pt-16">
             <h2 class="mt-8 mb-4 text-xl font-bold text-gray-900 sm:mt-4 dark:text-white">Edit a Doctor</h2>
-            <form action="{{ url('/admin/dokter/' . $data->id) }}" method="POST">
+            <form action="{{ url('/admin/dokter/' . $data->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
@@ -71,6 +71,21 @@
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                             placeholder="Type phone" value="{{ $data->dokter->phone }}" required>
                     </div>
+                    <div class="sm:col-span-2">
+                        <label class="block mb-2 text-sm font-medium text-gray-900" for="image">Upload Image</label>
+                        <div class="relative">
+                            <input name="image"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                aria-describedby="image" id="image" type="file">
+                            <button type="button"
+                                class="absolute text-sm text-gray-400 -translate-y-1/2 top-1/2 right-4 hover:text-gray-600 focus:outline-none"
+                                onclick="clearFileInput()">Clear</button>
+                        </div>
+                        <p class="mt-1 text-xs text-gray-500 dark:text-gray-300">png, jpg or jpeg (max. 2mb).</p>
+                        @error('image')
+                            <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+                        @enderror
+                    </div>
                 </div>
 
                 <div class="flex justify-between mt-6">
@@ -85,3 +100,11 @@
         </div>
     </section>
 @endsection
+
+
+<script>
+    function clearFileInput() {
+        const fileInput = document.getElementById('image');
+        fileInput.value = '';
+    }
+</script>

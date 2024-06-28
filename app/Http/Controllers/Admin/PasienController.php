@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Models\Pasien;
@@ -77,6 +79,19 @@ class PasienController extends Controller
     public function update(Request $request, string $id)
     {
         $data = User::with('pasien')->where('id', $id)->firstOrFail();
+        // Validasi input
+        $request->validate([
+            'username' => 'required',
+            'email' => 'required|email|unique:users,email,' . $data->id,
+            'password' => 'nullable|min:8',
+            'name' => 'required',
+            'birth_date' => 'required',
+            'gender' => 'required',
+            'age' => 'required|numeric',
+            'address' => 'required',
+            'phone' => 'required',
+        ]);
+
         $data->update([
             'username' => $request->username,
             'email' => $request->email,

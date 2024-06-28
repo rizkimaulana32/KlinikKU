@@ -35,6 +35,9 @@
                                     No</th>
                                 <th scope="col"
                                     class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                                    Image</th>
+                                <th scope="col"
+                                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                                     Username</th>
                                 <th scope="col"
                                     class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
@@ -65,6 +68,10 @@
                             @foreach ($data as $user)
                                 <tr>
                                     <td class="max-w-xs px-6 py-4 truncate">{{ $no }}</td>
+                                    <td class="max-w-xs px-6 py-4 truncate">
+                                        <img src="{{ asset($user->dokter->image) }}" alt="{{ $user->dokter->name }}"
+                                            class="object-cover h-8">
+                                    </td>
                                     <td class="max-w-xs px-6 py-4 truncate">{{ $user->username }}</td>
                                     <td class="max-w-xs px-6 py-4 truncate">{{ $user->email }}</td>
                                     @if ($user->dokter)
@@ -87,8 +94,6 @@
                                                 @method('delete')
                                                 <button class="text-red-600 hover:text-red-900">Delete</button>
                                             </form>
-                                            {{-- <a href="{{ url('/admin/dokter/' . $user->dokter->id . '/jadwal') }}"
-                                                class="ml-4 text-green-600 hover:text-green-900">Jadwal</a> --}}
                                         </div>
                                     </td>
                                 </tr>

@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Dokter;
 use App\Models\JanjiTemu;
 use App\Models\Pasien;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\File as FacadesFile;
 
 class LaporanController extends Controller
 {
@@ -41,6 +41,7 @@ class LaporanController extends Controller
             ->whereBetween('date', [$startDate, $endDate])
             ->groupBy('dokter_id')
             ->orderByDesc('appointment_count')
+            ->take(5)
             ->get();
 
         return view('admin.laporan.show', compact(
@@ -57,10 +58,10 @@ class LaporanController extends Controller
 
     public function download(Request $request)
     {
-        $startDate = $request->input('startDate');
-        $endDate = $request->input('endDate');
+        $startDate = $request->startDate;
+        $endDate = $request->endDate;
 
-        // Retrieve data for the report (optional, if you need to regenerate the report for download)
+        // Retrieve data for the report
         $totalAppointments = JanjiTemu::whereBetween('date', [$startDate, $endDate])->count();
         $totalPatients = Pasien::count();
         $totalDoctors = Dokter::count();
@@ -79,20 +80,8 @@ class LaporanController extends Controller
             ->whereBetween('date', [$startDate, $endDate])
             ->groupBy('dokter_id')
             ->orderByDesc('appointment_count')
+            ->take(5)
             ->get();
-
-        $cssFilePath = '';
-        $manifestPath = public_path('build/manifest.json');
-
-        if (FacadesFile::exists($manifestPath)) {
-            $manifest = json_decode(FacadesFile::get($manifestPath), true);
-            foreach ($manifest as $file => $details) {
-                if (strpos($file, 'resources/css/app.css') !== false) {
-                    $cssFilePath = 'build/' . $details['file'];
-                    break;
-                }
-            }
-        }
 
         // Create a new PDF document
         $pdf = Pdf::loadView('admin.laporan.pdf', compact(
@@ -103,8 +92,7 @@ class LaporanController extends Controller
             'totalDoctors',
             'newPatientAccounts',
             'topPatients',
-            'appointmentsByDoctor',
-            'cssFilePath'
+            'appointmentsByDoctor'
         ));
 
         // Download the PDF file

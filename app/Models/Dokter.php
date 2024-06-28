@@ -18,6 +18,7 @@ class Dokter extends Model
         'age',
         'spesialis',
         'phone',
+        'image',
     ];
 
     /**

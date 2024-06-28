@@ -2,7 +2,7 @@
 
 @section('content')
     <section class="p-4 bg-white dark:bg-gray-900 sm:ml-64">
-        <div class="max-w-3xl px-4 py-8 mx-auto md:py-16">
+        <div class="max-w-3xl px-4 py-8 mx-auto md:pt-16">
             <h2 class="mt-8 mb-4 text-xl font-bold text-gray-900 sm:mt-4 dark:text-white">Edit a patient</h2>
             <form action="{{ url('/admin/pasien/' . $data->id) }}" method="POST">
                 @csrf

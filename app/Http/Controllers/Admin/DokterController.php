@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Dokter;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class DokterController extends Controller
 {
@@ -58,6 +60,7 @@ class DokterController extends Controller
             'gender' => 'required',
             'age' => 'required|numeric',
             'phone' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
         // Simpan user baru
@@ -68,14 +71,24 @@ class DokterController extends Controller
             'role' => 'dokter',
         ]);
 
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->storeAs('public/dokterImg', $imageName);
+            $imagePath = 'storage/dokterImg/' . $imageName;
+        } else {
+            $imagePath = null;
+        }
+
         // Simpan dokter yang terkait
-        $dokter = Dokter::create([
+        Dokter::create([
             'user_id' => $user->id, // Menggunakan id dari user yang baru dibuat
             'name' => $request->name,
             'spesialis' => $request->spesialis,
             'gender' => $request->gender,
             'age' => $request->age,
             'phone' => $request->phone,
+            'image' => $imagePath,
         ]);
 
         return redirect('admin/dokter')->with('success', 'Data Dokter berhasil ditambahkan');
@@ -104,17 +117,41 @@ class DokterController extends Controller
     public function update(Request $request, string $id)
     {
         $data = User::with('dokter')->where('id', $id)->firstOrFail();
+        // Validasi input
+        $request->validate([
+            'username' => 'required',
+            'email' => 'required|email|unique:users,email,' . $data->id,
+            'password' => 'nullable|min:8',
+            'name' => 'required',
+            'spesialis' => 'required',
+            'gender' => 'required',
+            'age' => 'required|numeric',
+            'phone' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+
         $data->update([
             'username' => $request->username,
             'email' => $request->email,
             'password' => $request->filled('password') ? Hash::make($request->password) : $data->password,
         ]);
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->storeAs('public/dokterImg', $imageName);
+            $imagePath = 'storage/dokterImg/' . $imageName;
+        } else {
+            $imagePath = $data->dokter->image;
+        }
+
         $data->dokter()->update([
             'name' => $request->name,
             'spesialis' => $request->spesialis,
             'gender' => $request->gender,
             'age' => $request->age,
             'phone' => $request->phone,
+            'image' => $imagePath,
         ]);
         return redirect('admin/dokter')->with('success', 'Data Berhasil');
     }
@@ -125,6 +162,10 @@ class DokterController extends Controller
     public function destroy(string $id)
     {
         $data = User::with('dokter')->where('id', $id)->firstOrFail();
+        // Hapus gambar jika ada
+        if ($data->dokter->image) {
+            unlink(public_path($data->dokter->image));
+        }
         $data->delete();
         return redirect('admin/dokter')->with('success', 'Data Berhasil');
     }

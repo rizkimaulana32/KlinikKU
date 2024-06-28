@@ -1,18 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Dokter;
 
+use App\Http\Controllers\Controller;
 use App\Models\JadwalDokter;
 use App\Models\JanjiTemu;
 use Illuminate\Http\Request;
 
-class JanjiTemuController extends Controller
+class JanjiTemuDokterController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request, string $dokter_id)
+    public function index(Request $request)
     {
+        $dokter_id = auth()->user()->dokter->id;
         $query = JanjiTemu::where('dokter_id', $dokter_id)->with('pasien');
 
         $search = $request->search;
@@ -29,9 +31,9 @@ class JanjiTemuController extends Controller
             });
         }
 
-        $data = $query->paginate(10);
+        $data = $query->orderBy('date', 'asc')->paginate(10);
 
-        return view('admin.list.janjiTemu.index', compact('data', 'dokter_id'));
+        return view('dokter.janjiTemu.index', compact('data'));
     }
 
     /**
@@ -58,23 +60,11 @@ class JanjiTemuController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    // public function edit(string $dokter_id, string $jadwal_id)
-    // {
-    //     $data = JadwalDokter::where('id', $jadwal_id)->firstOrFail();
-    //     $available_slots = JadwalDokter::where('dokter_id', $dokter_id)
-    //         ->where('status', 'Available')
-    //         ->get(['start_time', 'end_time']);
-
-    //     return view('admin.dokter.jadwal.edit', compact('data', 'dokter_id', 'available_slots'));
-    // }
-
-    public function getAvailableSlots(Request $request, string $dokter_id)
+    public function getAvailableSlots(Request $request)
     {
         $date = $request->query('date');
 
+        $dokter_id = auth()->user()->dokter->id;
         $available_slots = JadwalDokter::where('dokter_id', $dokter_id)
             ->where('date', $date)
             ->where('status', 'Available')
@@ -83,19 +73,25 @@ class JanjiTemuController extends Controller
         return response()->json($available_slots);
     }
 
-
-    public function edit(string $dokter_id, string $janjitemu_id)
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
     {
-        $data = JanjiTemu::where('id', $janjitemu_id)->firstOrFail();
+        $dokter_id = auth()->user()->dokter->id;
+        $data = JanjiTemu::where('id', $id)->firstOrFail();
         $available_slots = JadwalDokter::where('dokter_id', $dokter_id)
             ->where('date', $data->date) // Use the existing date of the appointment
             ->where('status', 'Available')
             ->get(['start_time', 'end_time']);
 
-        return view('admin.list.janjitemu.edit', compact('data', 'dokter_id', 'available_slots'));
+        return view('dokter.janjiTemu.edit', compact('data', 'available_slots'));
     }
 
-    public function update(Request $request, string $dokter_id, string $janjitemu_id)
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
     {
         $request->validate([
             'date' => 'required|date',
@@ -106,7 +102,8 @@ class JanjiTemuController extends Controller
         ]);
 
         // Dapatkan janji temu yang akan diperbarui
-        $appointment = JanjiTemu::findOrFail($janjitemu_id);
+        $appointment = JanjiTemu::findOrFail($id);
+        $dokter_id = auth()->user()->dokter->id;
 
         // Simpan slot waktu lama sebelum diperbarui
         $oldStartTime = $appointment->start_time;
@@ -143,68 +140,16 @@ class JanjiTemuController extends Controller
             ->where('end_time', $request->end_time)
             ->update(['status' => 'unavailable']);
 
-        return redirect('/admin/list/' . $dokter_id . '/janjitemu')->with('success', 'Appointment updated successfully');
+        return redirect('/dokter/janjitemu')->with('success', 'Appointment updated successfully');
     }
-
-
-    // public function update(Request $request, string $dokter_id, string $janjitemu_id)
-    // {
-    //     $request->validate([
-    //         'date' => 'required|date',
-    //         'start_time' => 'required',
-    //         'end_time' => 'required',
-    //         'status' => 'required',
-    //         'note' => 'required',
-    //     ]);
-
-    //     JanjiTemu::where('id', $janjitemu_id)->update([
-    //         'date' => $request->date,
-    //         'start_time' => $request->start_time,
-    //         'end_time' => $request->end_time,
-    //         'status' => $request->status,
-    //         'note' => $request->note,
-    //     ]);
-
-    //     JadwalDokter::where('id', $jadwal_id)->update([
-    //         'start_time' => $request->start_time,
-    //         'end_time' => $request->end_time,
-    //         'status' => 'Unavailable',
-    //     ]);
-
-    //     return redirect('/admin/list/' . $dokter_id . '/janjitemu')->with('success', 'Appointment updated successfully');
-    // }
-
-
-    /**
-     * Update the specified resource in storage.
-     */
-    // public function update(Request $request, string $dokter_id, string $janjitemu_id)
-    // {
-    //     $request->validate([
-    //         'date' => 'required',
-    //         'start_time' => 'required',
-    //         'end_time' => 'required',
-    //         'status' => 'required',
-    //         'note' => 'required',
-    //     ]);;
-
-    //     JanjiTemu::where('id', $janjitemu_id)->update([
-    //         'date' => $request->date,
-    //         'start_time' => $request->start_time,
-    //         'end_time' => $request->end_time,
-    //         'status' => $request->status,
-    //         'note' => $request->note,
-    //     ]);
-
-    //     return redirect('/admin/list/' . $dokter_id . '/janjitemu');
-    // }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $dokter_id, string $janjitemu_id)
+    public function destroy(string $id)
     {
-        JanjiTemu::where('id', $janjitemu_id)->delete();
-        return redirect('/admin/list/' . $dokter_id . '/janjitemu');
+        $data = JanjiTemu::where('id', $id)->firstOrFail();
+        $data->delete();
+        return redirect('/dokter/janjitemu')->with('success', 'Appointment deleted successfully');
     }
 }

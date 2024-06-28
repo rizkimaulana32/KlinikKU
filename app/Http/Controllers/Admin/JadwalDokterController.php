@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Dokter;
 use App\Models\JadwalDokter;
 use Illuminate\Http\Request;
@@ -25,7 +26,7 @@ class JadwalDokterController extends Controller
             });
         }
 
-        $data = $query->paginate(10);
+        $data = $query->orderBy('date', 'asc')->paginate(10);
 
         return view('admin.list.jadwal.index', compact('data', 'dokter_id'));
     }

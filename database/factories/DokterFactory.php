@@ -23,6 +23,7 @@ class DokterFactory extends Factory
             'age' => $this->faker->numberBetween(18, 80),
             'spesialis' => $this->faker->jobTitle,
             'phone' => $this->faker->phoneNumber,
+            'image' => $this->faker->imageUrl(640, 480),
         ];
     }
 }
