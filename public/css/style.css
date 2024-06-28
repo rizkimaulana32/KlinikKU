@@ -87,11 +87,11 @@ h6 {
     transition: all 0.4s;
 }
 
-.back-to-top i {
+/* .back-to-top i {
     font-size: 28px;
     color: #fff;
     line-height: 0;
-}
+} */
 
 .back-to-top:hover {
     background: #298ce5;

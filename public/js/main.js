@@ -62,7 +62,7 @@
      */
     const scrollto = (el) => {
         let header = select("#header");
-        let offset = header.offsetHeight;
+        let offset = 40;
 
         let elementPos = select(el).offsetTop;
         window.scrollTo({
