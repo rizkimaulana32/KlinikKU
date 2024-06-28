@@ -18,7 +18,7 @@
 2. Navigate to the project directory:
 
     ```bash
-    cd dewakoding-kasir
+    cd KlinikKU
     ```
 
 3. Install PHP dependencies:
