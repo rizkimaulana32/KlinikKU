@@ -17,6 +17,14 @@ Route::get('/', function () {
     return view('dashboard');
 })->middleware('guest')->name('dashboard');
 
+Route::get('/home', function () {
+    return view('wel');
+})->name('home');
+
+Route::get('/homepasien', function () {
+    return view('pasien.home');
+});
+
 Route::middleware(['auth', 'userAkses:pasien'])->group(function () {
     Route::get('/pasien/dashboard', function () {
         return view('pasien.dashboard');
