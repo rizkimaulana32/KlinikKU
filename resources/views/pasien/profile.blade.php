@@ -57,7 +57,7 @@
     </header><!-- End Header -->
 
     <!-- ======= Hero Section ======= -->
-    <section id="hero" class="d-flex align-items-center">
+    {{-- <section id="hero" class="d-flex align-items-center">
         <div class="container">
             <h1>Welcome to Klinikku</h1>
             <h2>Solusi Kesehatan Terlengkap</h2>
@@ -119,7 +119,7 @@
                 </div>
 
             </div>
-        </section><!-- End Why Us Section -->
+        </section><!-- End Why Us Section --> --}}
 
         {{-- <!-- ======= Doctors Section ======= -->
         <section id="doctors" class="doctors">
@@ -169,7 +169,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> 
 
                 <!-- <div class="row">
 
@@ -244,9 +244,9 @@
                 </div> -->
 
             </div>
-        </section><!-- End Doctors Section -->
+        </section><!-- End Doctors Section --> --}}
 
-        <!-- ======= Status Section ======= -->
+        {{-- <!-- ======= Status Section ======= -->
         <section id="status">
             <div class="container mt-5">
                 <div class="appointment-card">
@@ -275,9 +275,9 @@
                     </div>
                 </div>
             </div>
-        </section><!-- End Status Section -->
+        </section><!-- End Status Section --> --}}
 
-        <section id="record"><!-- Record Status Section -->
+        {{-- <section id="record"><!-- Record Status Section -->
             <div class="container mt-5">
                 <div class="record-card">
                     <div class="row">
@@ -329,7 +329,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> --}}
 
         <section id="profile">
             <div class="container mt-5">
@@ -373,7 +373,7 @@
                     </form>
                 </div>
             </div>
-        </section> --}}
+        </section> 
 
     </main>
 

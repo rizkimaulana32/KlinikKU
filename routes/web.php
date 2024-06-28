@@ -25,6 +25,22 @@ Route::get('/homepasien', function () {
     return view('pasien.home');
 });
 
+Route::get('/doctors', function () {
+    return view('pasien.doctors');
+});
+
+Route::get('/status', function () {
+    return view('pasien.status');
+});
+
+Route::get('/rekammedis', function () {
+    return view('pasien.rekam');
+});
+
+Route::get('/profilepasien', function () {
+    return view('pasien.profile');
+});
+
 Route::middleware(['auth', 'userAkses:pasien'])->group(function () {
     Route::get('/pasien/dashboard', function () {
         return view('pasien.dashboard');
