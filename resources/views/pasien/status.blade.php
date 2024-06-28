@@ -49,14 +49,14 @@
                     <li><a class="nav-link scrollto" href="/status">Status</a></li>
                     <li><a class="nav-link scrollto" href="/rekammedis">Rekam Medis</a></li>
                     <li><a class="nav-link scrollto" href="/profilepasien">Profile</a></li>
-                </ul> 
+                </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
 
         </div>
     </header><!-- End Header -->
 
-    <!-- ======= Hero Section ======= -->
+    {{-- <!-- ======= Hero Section ======= -->
     <section id="hero" class="d-flex align-items-center">
         <div class="container">
             <h1>Welcome to Klinikku</h1>
@@ -65,9 +65,9 @@
         </div>
     </section><!-- End Hero -->
 
-    <main id="main">
+    <main id="main"> --}}
 
-        <!-- ======= Why Us Section ======= -->
+        {{-- <!-- ======= Why Us Section ======= -->
         <section id="why-us" class="why-us">
             <div class="container">
 
@@ -118,7 +118,7 @@
                     </div>
                 </div>
 
-            </div>
+            </div> --}}
         </section><!-- End Why Us Section -->
 
         {{-- <!-- ======= Doctors Section ======= -->
@@ -169,7 +169,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
                 <!-- <div class="row">
 
@@ -277,7 +277,7 @@
             </div>
         </section><!-- End Status Section -->
 
-        <section id="record"><!-- Record Status Section -->
+        {{-- <section id="record"><!-- Record Status Section -->
             <div class="container mt-5">
                 <div class="record-card">
                     <div class="row">
@@ -329,9 +329,9 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> --}}
 
-        <section id="profile">
+        {{-- <section id="profile">
             <div class="container mt-5">
                 <div class="profile-card">
                     <div class="row">
@@ -373,7 +373,7 @@
                     </form>
                 </div>
             </div>
-        </section> --}}
+        </section>  --}}
 
     </main>
 
