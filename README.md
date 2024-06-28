@@ -12,7 +12,7 @@
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/SeptiawanAjiP/dewakoding-kasir.git
+    https://github.com/rizkimaulana32/KlinikKU.git
     ```
 
 2. Navigate to the project directory:
@@ -45,6 +45,8 @@
 
     ```bash
     composer require laravel/breeze
+    ```
+     ```bash
     php artisan breeze:install
     ```
 
