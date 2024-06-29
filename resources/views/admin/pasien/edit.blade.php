@@ -14,7 +14,7 @@
                         <input type="text" name="username" id="username"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                             placeholder="Type username" value="{{ $data->username }}" required>
-                            @error('username')
+                        @error('username')
                             <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
                         @enderror
                     </div>
@@ -26,7 +26,7 @@
                             placeholder="Type new password">
                         <p class="mt-1 text-xs text-gray-600">Leave this field empty if you don't want to change the
                             password.</p>
-                            @error('password')
+                        @error('password')
                             <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
                         @enderror
                     </div>
@@ -36,7 +36,7 @@
                         <input type="email" name="email" id="email"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                             placeholder="Type email" value="{{ $data->email }}" required="">
-                            @error('email')
+                        @error('email')
                             <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
                         @enderror
                     </div>
@@ -45,8 +45,8 @@
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama</label>
                         <input type="text" name="name" id="name"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                            placeholder="Type name" value="{{ $data->pasien->name }}" required="">
-                            @error('name')
+                            placeholder="Type name" value="{{ $data->pasien->name ?? '' }}" required="">
+                        @error('name')
                             <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
                         @enderror
                     </div>
@@ -56,8 +56,8 @@
                             Lahir</label>
                         <input type="date" name="birth_date" id="birth_date"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                            placeholder="Type date" value="{{ $data->pasien->birth_date }}" required="">
-                            @error('birth_date')
+                            placeholder="Type date" value="{{ $data->pasien->birth_date ?? '' }}" required="">
+                        @error('birth_date')
                             <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
                         @enderror
                     </div>
@@ -66,8 +66,8 @@
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Umur</label>
                         <input type="number" name="age" id="age"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                            placeholder="Type age" value="{{ $data->pasien->age }}" required="">
-                            @error('age')
+                            placeholder="Type age" value="{{ $data->pasien->age ?? '' }}" required="">
+                        @error('age')
                             <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
                         @enderror
                     </div>
@@ -77,22 +77,27 @@
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gender</label>
                         <select id="gender" name="gender"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                            <option value="Laki-Laki" {{ $data->pasien->gender == 'Laki-Laki' ? 'selected' : '' }}>Laki-Laki
+                            <option value="Laki-Laki"
+                                {{ optional($data->pasien)->gender == 'Laki-Laki' ? 'selected' : '' }}>
+                                Laki-Laki
                             </option>
-                            <option value="Perempuan" {{ $data->pasien->gender == 'Perempuan' ? 'selected' : '' }}>Perempuan
+                            <option value="Perempuan"
+                                {{ optional($data->pasien)->gender == 'Perempuan' ? 'selected' : '' }}>
+                                Perempuan
                             </option>
                         </select>
+
                         @error('gender')
-                        <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
-                    @enderror
+                            <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+                        @enderror
                     </div>
                     <div class="w-full">
                         <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">No
                             Telpon</label>
                         <input type="text" name="phone" id="phone"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                            placeholder="Type phone" value="{{ $data->pasien->phone }}" required="">
-                            @error('phone')
+                            placeholder="Type phone" value="{{ $data->pasien->phone ?? '' }}" required="">
+                        @error('phone')
                             <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
                         @enderror
                     </div>
@@ -102,8 +107,8 @@
                         </label>
                         <input type="text" name="address" id="address"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                            placeholder="Type address" value="{{ $data->pasien->address }}" required="">
-                            @error('address')
+                            placeholder="Type address" value="{{ $data->pasien->address ?? '' }}" required="">
+                        @error('address')
                             <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
                         @enderror
                     </div>

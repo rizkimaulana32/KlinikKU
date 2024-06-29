@@ -181,9 +181,9 @@
     /**
      * Initiate glightbox
      */
-    const glightbox = GLightbox({
-        selector: ".glightbox",
-    });
+    // const glightbox = GLightbox({
+    //     selector: ".glightbox",
+    // });
 
     /**
      * Initiate Gallery Lightbox
@@ -195,5 +195,5 @@
     /**
      * Initiate Pure Counter
      */
-    new PureCounter();
+    // new PureCounter();
 })();

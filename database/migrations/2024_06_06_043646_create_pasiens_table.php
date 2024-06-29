@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('pasiens', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
-            $table->string('name');
-            $table->date('birth_date');
-            $table->integer('age');
-            $table->enum('gender', ['Laki-laki', 'Perempuan']);
-            $table->string('address');
-            $table->string('phone');
+            $table->string('name')->nullable();
+            $table->date('birth_date')->nullable();
+            $table->integer('age')->nullable();
+            $table->enum('gender', ['Laki-laki', 'Perempuan'])->nullable();
+            $table->string('address')->nullable();
+            $table->string('phone')->nullable();
             $table->timestamps();
         });
     }

@@ -9,25 +9,15 @@ use App\Http\Controllers\Admin\JanjiTemuController;
 use App\Http\Controllers\Admin\LaporanController;
 use App\Http\Controllers\Admin\PasienController;
 use App\Http\Controllers\Admin\RekamMedisController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Pasien\JadwalController as PasienJadwalController;
+use App\Http\Controllers\Pasien\JanjiTemuController as PasienJanjiTemuController;
 use Illuminate\Support\Facades\Route;
 
 require __DIR__ . '/auth.php';
 
-Route::get('/', function () {
-    return view('dashboard');
-})->middleware('guest')->name('dashboard');
-
-Route::get('/home', function () {
-    return view('wel');
-})->name('home');
-
-Route::get('/homepasien', function () {
-    return view('pasien.home');
-});
-
-Route::get('/doctors', function () {
-    return view('pasien.doctors');
-});
+Route::get('/', [DashboardController::class, 'index'])->middleware('guest')->name('dashboard');
+Route::get('/fetch-available-schedules/{doctor_id}/{date}', [DashboardController::class, 'fetchAvailableSchedules']);
 
 Route::get('/status', function () {
     return view('pasien.status');
@@ -37,14 +27,24 @@ Route::get('/rekammedis', function () {
     return view('pasien.rekam');
 });
 
-Route::get('/profilepasien', function () {
-    return view('pasien.profile');
-});
 
 Route::middleware(['auth', 'userAkses:pasien'])->group(function () {
     Route::get('/pasien/dashboard', function () {
         return view('pasien.dashboard');
     })->name('pasien.dashboard');
+
+    Route::get('/pasien/home', function () {
+        return view('pasien.home');
+    });
+
+
+    Route::get('/pasien/profile', function () {
+        return view('pasien.profile');
+    });
+
+    Route::get('/pasien/dokter', [PasienJadwalController::class, 'index']);
+    Route::get('/get-available-slots/{doctor}', [PasienJadwalController::class, 'getAvailableSlots']);
+    Route::post('/pasien/janjitemu/{doctor_id}', [PasienJanjiTemuController::class, 'store']);
 });
 
 Route::middleware(['auth', 'userAkses:admin'])->group(function () {
