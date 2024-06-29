@@ -13,6 +13,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Pasien\JadwalController as PasienJadwalController;
 use App\Http\Controllers\Pasien\JanjiTemuController as PasienJanjiTemuController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Pasien\PasienProfileController;
+
 
 require __DIR__ . '/auth.php';
 
@@ -37,10 +39,9 @@ Route::middleware(['auth', 'userAkses:pasien'])->group(function () {
         return view('pasien.home');
     });
 
-
-    Route::get('/pasien/profile', function () {
-        return view('pasien.profile');
-    });
+    Route::get('/pasien/profile', [PasienProfileController::class, 'index'])->name('pasien.profile');
+    Route::post('/pasien/profile', [PasienProfileController::class, 'create'])->name('pasien.profile.create');
+    Route::put('/pasien/profile/{id}/update', [PasienProfileController::class, 'update'])->name('pasien.profile.update');
 
     Route::get('/pasien/dokter', [PasienJadwalController::class, 'index']);
     Route::get('/get-available-slots/{doctor}', [PasienJadwalController::class, 'getAvailableSlots']);
