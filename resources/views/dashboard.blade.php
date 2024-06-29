@@ -170,7 +170,7 @@
                                                 <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
                                             @enderror
                                         </div>
-                                        <div id="availableSchedule" class="mt-4">
+                                        <div id="availableSchedule" class="mt-4 row">
                                             <!-- Tempat untuk menampilkan jadwal yang tersedia -->
                                         </div>
                                     </div>
@@ -206,7 +206,9 @@
                                     if (schedule.status === 'Available') {
                                         var scheduleBlock = document.createElement('div');
                                         scheduleBlock.classList.add('bg-green-200', 'p-2',
-                                            'mb-2');
+                                            'mb-2', 'rounded', 'col-lg-5',
+                                            'text-center',
+                                            'm-auto');
                                         scheduleBlock.textContent = schedule.start_time +
                                             ' - ' + schedule.end_time;
                                         availableScheduleDiv.appendChild(scheduleBlock);

@@ -7,7 +7,7 @@
                     <ul>
                         <li><a class="nav-link scrollto" href="{{ url('/pasien/home') }}">Home</a></li>
                         <li><a class="nav-link scrollto" href="{{ url('/pasien/dokter') }}">Doctors</a></li>
-                        <li><a class="nav-link scrollto" href="{{ url('/pasien/status') }}">Status</a></li>
+                        <li><a class="nav-link scrollto" href="{{ url('/pasien/janjitemu') }}">Janji Temu</a></li>
                         <li><a class="nav-link scrollto" href="{{ url('/pasien/rekammedis') }}">Rekam Medis</a></li>
                         <li><a class="nav-link scrollto" href="{{ url('/pasien/profile') }}">Profile</a></li>
                     </ul>

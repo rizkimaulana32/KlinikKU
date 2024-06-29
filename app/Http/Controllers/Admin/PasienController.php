@@ -97,6 +97,7 @@ class PasienController extends Controller
             'email' => $request->email,
             'password' => $request->filled('password') ? Hash::make($request->password) : $data->password,
         ]);
+
         $data->pasien()->update([
             'name' => $request->name,
             'birth_date' => $request->birth_date,

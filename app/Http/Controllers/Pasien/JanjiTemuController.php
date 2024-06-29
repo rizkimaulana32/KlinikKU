@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Pasien;
 
 use App\Http\Controllers\Controller;
+use App\Models\JadwalDokter;
 use App\Models\JanjiTemu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -16,8 +17,17 @@ class JanjiTemuController extends Controller
         $user = auth()->user();
 
         // Cek kelengkapan profil
-        if (!$user->pasien->name || !$user->pasien->birth_date || !$user->pasien->age || !$user->pasien->gender || !$user->address || !$user->phone_number || !$user->pasien) {
-            return redirect('/profile/edit')->with('error', 'Please complete your profile before making an appointment.');
+        if (
+            !$user->pasien ||
+            !$user->pasien->name ||
+            !$user->pasien->birth_date ||
+            !$user->pasien->age ||
+            !$user->pasien->gender ||
+            !$user->address ||
+            !$user->phone_number
+        ) {
+            return redirect('/pasien/dokter')
+                ->withErrors('Tolong lengkapi profil Anda terlebih dahulu sebelum membuat janji temu.');
         }
 
         // Verify password
@@ -29,7 +39,6 @@ class JanjiTemuController extends Controller
 
         $slot = $request->input('slot');
         [$startTime, $endTime] = explode('-', $slot);
-        dd($startTime, $endTime);
 
         JanjiTemu::create([
             'pasien_id' => $pasien_id,
@@ -41,13 +50,28 @@ class JanjiTemuController extends Controller
             'status' => 'Scheduled',
         ]);
 
+        JadwalDokter::where('dokter_id', $dokter_id)
+            ->where('date', $request->date)
+            ->where('start_time', $request->start_time)
+            ->where('end_time', $request->end_time)
+            ->update(['status' => 'Unavailable']);
+
         return redirect('/pasien/janjitemu')->with('success', 'Appointment scheduled successfully!');
+    }
+
+    public function show()
+    {
+        if (!auth()->user()->pasien) {
+            return redirect('/pasien/dokter')->withErrors('Tolong lengkapi profil Anda terlebih dahulu sebelum mengakses janji temu.');
+        }
+
+        $data = JanjiTemu::where('pasien_id', auth()->user()->pasien->id)->get();
+        return view('pasien.janjitemu', compact('data'));
     }
 
 
     public function update(Request $request, string $id)
     {
-        //
     }
 
 

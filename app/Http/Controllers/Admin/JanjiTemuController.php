@@ -134,7 +134,7 @@ class JanjiTemuController extends Controller
                 ->where('date', $oldDate)
                 ->where('start_time', $oldStartTime)
                 ->where('end_time', $oldEndTime)
-                ->update(['status' => 'available']);
+                ->update(['status' => 'Available']);
         }
 
         // Perbarui status jadwal dokter yang baru menjadi "unavailable"
@@ -142,7 +142,7 @@ class JanjiTemuController extends Controller
             ->where('date', $request->date)
             ->where('start_time', $request->start_time)
             ->where('end_time', $request->end_time)
-            ->update(['status' => 'unavailable']);
+            ->update(['status' => 'Unavailable']);
 
         return redirect('/admin/list/' . $dokter_id . '/janjitemu')->with('success', 'Appointment updated successfully');
     }

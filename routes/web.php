@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\RekamMedisController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Pasien\JadwalController as PasienJadwalController;
 use App\Http\Controllers\Pasien\JanjiTemuController as PasienJanjiTemuController;
+use App\Http\Controllers\Pasien\RekamMedisController as PasienRekamMedisController;
 use Illuminate\Support\Facades\Route;
 
 require __DIR__ . '/auth.php';
@@ -28,7 +29,7 @@ Route::get('/rekammedis', function () {
 });
 
 
-Route::middleware(['auth', 'userAkses:pasien'])->group(function () {
+Route::middleware(['auth', 'userAkses:pasien', 'web'])->group(function () {
     Route::get('/pasien/dashboard', function () {
         return view('pasien.dashboard');
     })->name('pasien.dashboard');
@@ -45,6 +46,8 @@ Route::middleware(['auth', 'userAkses:pasien'])->group(function () {
     Route::get('/pasien/dokter', [PasienJadwalController::class, 'index']);
     Route::get('/get-available-slots/{doctor}', [PasienJadwalController::class, 'getAvailableSlots']);
     Route::post('/pasien/janjitemu/{doctor_id}', [PasienJanjiTemuController::class, 'store']);
+    Route::get('/pasien/janjitemu', [PasienJanjiTemuController::class, 'show']);
+    Route::get('/pasien/rekammedis', [PasienRekamMedisController::class, 'index']);
 });
 
 Route::middleware(['auth', 'userAkses:admin'])->group(function () {

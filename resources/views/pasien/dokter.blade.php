@@ -4,6 +4,22 @@
     <!-- ======= Doctors Section ======= -->
     <section id="doctors" class="doctors" style="padding-top: 80px;">
         <div class="container">
+            @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    <div class="mt-2 alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ $error }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endforeach
+            @endif
+
+            @if (session('success'))
+                <div class="mt-4 alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+
             <div class="row">
                 @foreach ($data as $doctor)
                     <div class="mt-4 col-lg-6">
@@ -88,24 +104,6 @@
                     </div>
                 @endforeach
 
-                <!-- Modal message -->
-                @if (Session::has('message'))
-                    <div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="messageModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="messageModalLabel">Success</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>{{ Session::get('message') }}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endif
             </div>
         </div>
     </section>
@@ -150,11 +148,6 @@
                         });
                 });
             });
-
-            @if (Session::has('message'))
-                var messageModal = new bootstrap.Modal(document.getElementById('messageModal'));
-                messageModal.show();
-            @endif
         });
     </script>
 @endsection
