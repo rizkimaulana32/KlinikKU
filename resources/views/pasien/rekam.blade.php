@@ -5,7 +5,7 @@
     <section id="record" class="py-8 mt-12 ">
         <div class="container px-4 mx-auto">
             @if ($data->isEmpty())
-                <div class="text-center text-gray-600">Anda belum memiliki rekam medis.</div>
+                <div class="mt-4 text-center text-gray-600">Anda belum memiliki rekam medis.</div>
             @else
                 <div class="grid grid-cols-1 gap-6 mt-6">
                     @foreach ($data as $record)

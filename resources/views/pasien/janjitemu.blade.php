@@ -33,90 +33,101 @@
                         </div>
                         <div class="mt-4 row">
                             <div class="text-center col-md-6">
-                                <p class="status-badge"><strong>Status:</strong> <span
-                                        class="badge bg-success">{{ $janjiTemu->status }}</span></p>
+                                <p class="status-badge"><strong>Status:</strong>
+                                    <span
+                                        class="badge {{ $janjiTemu->status == 'Completed' ? 'bg-success' : 'bg-secondary' }}">
+                                        {{ $janjiTemu->status }}
+                                    </span>
+                                </p>
                             </div>
                             <div class="text-center col-md-6">
-                                <p class="appointment-date"><strong>Tanggal:</strong> {{ $janjiTemu->date }} |
-                                    {{ $janjiTemu->start_time }} - {{ $janjiTemu->end_time }}</p>
+                                <p class="appointment-date"><strong>Tanggal:</strong>
+                                    {{ $janjiTemu->date }} | {{ $janjiTemu->start_time }} - {{ $janjiTemu->end_time }}
+                                </p>
                             </div>
                         </div>
                         <div class="mt-3 row">
                             <div class="text-center col-md-6">
                                 <button class="btn btn-primary btn-custom" data-bs-toggle="modal"
-                                    data-bs-target="#scheduleModal{{ $janjiTemu->id }}">Ubah Jadwal</button>
+                                    data-bs-target="#scheduleModal{{ $janjiTemu->id }}"
+                                    {{ $janjiTemu->status == 'Completed' ? 'disabled' : '' }}>
+                                    Ubah Jadwal
+                                </button>
                             </div>
                             <div class="text-center col-md-6">
                                 <form method="POST"
                                     action="{{ url('/pasien/janjitemu/' . $janjiTemu->id . '/dokter/' . $janjiTemu->dokter_id) }}">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-m">Batalkan</button>
+                                    <button type="submit" class="btn btn-danger btn-m"
+                                        {{ $janjiTemu->status == 'Completed' ? 'disabled' : '' }}>
+                                        Batalkan
+                                    </button>
                                 </form>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- Modal -->
-                        <div class="modal fade" id="scheduleModal{{ $janjiTemu->id }}" tabindex="-1"
-                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-md">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Update Schedule</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form method="POST" action="{{ url('/pasien/janjitemu/' . $janjiTemu->id) }}">
-                                            @method('PUT')
-                                            @csrf
-                                            <div class="w-full">
-                                                <label for="date{{ $janjiTemu->dokter_id }}"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pilih
-                                                    Tanggal</label>
-                                                <input type="date" name="date" id="date{{ $janjiTemu->dokter_id }}"
-                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                                    value="{{ $janjiTemu->date }}" required>
+                    <!-- Modal -->
+                    <div class="modal fade" id="scheduleModal{{ $janjiTemu->id }}" tabindex="-1"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-md">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Update Schedule</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form method="POST" action="{{ url('/pasien/janjitemu/' . $janjiTemu->id) }}">
+                                        @method('PUT')
+                                        @csrf
+                                        <div class="w-full">
+                                            <label for="date{{ $janjiTemu->dokter_id }}"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pilih
+                                                Tanggal</label>
+                                            <input type="date" name="date" id="date{{ $janjiTemu->dokter_id }}"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                                value="{{ $janjiTemu->date }}" required>
 
-                                            </div>
-                                            <div class="w-full mt-3">
-                                                <label for="slot{{ $janjiTemu->dokter_id }}"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Slot
-                                                    Waktu</label>
-                                                <select id="slot{{ $janjiTemu->dokter_id }}" name="slot"
-                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                                    required>
-                                                    <!-- Slot options will be filled dynamically with JavaScript -->
-                                                </select>
-                                            </div>
-                                            <div class="mt-3 sm:col-span-2">
-                                                <label for="note{{ $janjiTemu->dokter_id }}"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Keluhan</label>
-                                                <textarea id="note{{ $janjiTemu->dokter_id }}" rows="2" name="note"
-                                                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                                    placeholder="Type note here" required>{{ $janjiTemu->note }}</textarea>
+                                        </div>
+                                        <div class="w-full mt-3">
+                                            <label for="slot{{ $janjiTemu->dokter_id }}"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Slot
+                                                Waktu</label>
+                                            <select id="slot{{ $janjiTemu->dokter_id }}" name="slot"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                                required>
+                                                <!-- Slot options will be filled dynamically with JavaScript -->
+                                            </select>
+                                        </div>
+                                        <div class="mt-3 sm:col-span-2">
+                                            <label for="note{{ $janjiTemu->dokter_id }}"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Keluhan</label>
+                                            <textarea id="note{{ $janjiTemu->dokter_id }}" rows="2" name="note"
+                                                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                                placeholder="Type note here" required>{{ $janjiTemu->note }}</textarea>
 
-                                            </div>
-                                            <div class="w-full mt-3">
-                                                <label for="password{{ $janjiTemu->dokter_id }}"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password
-                                                    Confirmation</label>
-                                                <input type="password" name="password"
-                                                    id="password{{ $janjiTemu->dokter_id }}"
-                                                    placeholder="Type your password here"
-                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                                    required>
-                                            </div>
-                                            <button type="submit" class="mt-3 btn btn-primary btn-custom"
-                                                id="submitFormBtn{{ $janjiTemu->dokter_id }}">Submit</button>
-                                        </form>
-                                    </div>
+                                        </div>
+                                        <div class="w-full mt-3">
+                                            <label for="password{{ $janjiTemu->dokter_id }}"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password
+                                                Confirmation</label>
+                                            <input type="password" name="password" id="password{{ $janjiTemu->dokter_id }}"
+                                                placeholder="Type your password here"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                                required>
+                                        </div>
+                                        <button type="submit" class="mt-3 btn btn-primary btn-custom"
+                                            id="submitFormBtn{{ $janjiTemu->dokter_id }}">Submit</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
-                @endforeach
-            @endif
+        </div>
+        @endforeach
+        @endif
         </div>
     </section>
 @endsection
