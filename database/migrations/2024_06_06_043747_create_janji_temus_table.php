@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('date');
             $table->time('start_time');
             $table->time('end_time');
-            $table->enum('status', ['Scheduled', 'Completed', 'Cancelled'])->default('Scheduled');
+            $table->enum('status', ['Scheduled', 'Completed'])->default('Scheduled');
             $table->text('note')->nullable();
             $table->timestamps();
         });

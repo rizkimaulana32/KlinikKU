@@ -5,51 +5,76 @@ namespace App\Http\Controllers\Pasien;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Models\Pasien;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class PasienProfileController extends Controller
 {
-    
+
     public function index()
     {
         $user = Auth::user();
-        $profile = $user->profilePasien;
-        if (!$user->pasien){
-            return view('pasien.profile', compact('profile'));
+        if (!$user->pasien) {
+            return view('pasien.profile');
         } else {
-            $dataPasien = Pasien::where('id', $user->pasien->id )->first();
-            return view('pasien.profile', compact('dataPasien','profile'));
+            $user_id = $user->id;
+            $data = User::with('pasien')->where('id', $user_id)->firstOrFail();
+            return view('pasien.profile', compact('data'));
         }
-        
     }
 
-    
-    public function create(ProfileUpdateRequest $request)
+
+    public function create(Request $request)
     {
         $user = Auth::user();
 
-        $profile = $user->profilePasien ?? new Pasien();
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'birth_date' => ['required', 'date'],
+            'gender' => ['required'],
+            'age' => ['required', 'numeric'],
+            'address' => ['required', 'string', 'max:255'],
+            'phone' => ['required', 'numeric'],
+        ]);
 
-        $profile->user_id = $user->id;
-        $profile->name = $request->name;
-        $profile->birth_date = $request->birth_date;
-        $profile->age = $request->age;
-        $profile->gender = $request->gender;
-        $profile->address = $request->address;
-        $profile->phone = $request->phone;
+        Pasien::create([
+            'user_id' => $user->id,
+            'name' => $request->name,
+            'birth_date' => $request->birth_date,
+            'gender' => $request->gender,
+            'age' => $request->age,
+            'address' => $request->address,
+            'phone' => $request->phone,
+        ]);
 
-        $profile->save();
-
-        return redirect()->route('pasien.profile')->with('success', 'Profil berhasil diperbarui.');
-                                                    
+        return redirect()->route('pasien.profile')->with('success', 'Profil berhasil ditambahkan.');
     }
 
     public function update(Request $request, string $id)
     {
-        $dataPasien = Pasien::where('id', $id )->first();
+        $data = User::with('pasien')->where('id', $id)->firstOrFail();
 
-        $dataPasien->update([
+        $request->validate([
+            'username' => 'required|unique:users,username,' . $data->id,
+            'email' => 'required|email|unique:users,email,' . $data->id,
+            'password' => 'nullable|min:8',
+            'name' => 'required',
+            'birth_date' => 'required',
+            'gender' => 'required',
+            'age' => 'required|numeric',
+            'address' => 'required',
+            'phone' => 'required',
+        ]);
+
+        $data->update([
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => $request->filled('password') ? Hash::make($request->password) : $data->password,
+        ]);
+
+        $data->pasien()->update([
             'name' => $request->name,
             'birth_date' => $request->birth_date,
             'gender' => $request->gender,
@@ -59,6 +84,5 @@ class PasienProfileController extends Controller
         ]);
 
         return redirect()->route('pasien.profile')->with('success', 'Profil berhasil diperbarui.');
-                                                    
     }
 }

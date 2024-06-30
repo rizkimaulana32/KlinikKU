@@ -81,7 +81,7 @@ class PasienController extends Controller
         $data = User::with('pasien')->where('id', $id)->firstOrFail();
         // Validasi input
         $request->validate([
-            'username' => 'required',
+            'username' => 'required|unique:users,username,' . $data->id,
             'email' => 'required|email|unique:users,email,' . $data->id,
             'password' => 'nullable|min:8',
             'name' => 'required',

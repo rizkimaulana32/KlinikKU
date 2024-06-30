@@ -12,6 +12,7 @@ class RekamMedis extends Model
 
     protected $fillable = [
         'janji_temu_id',
+        'pasien_id',
         'diagnosis',
         'obat',
         'tindakan',

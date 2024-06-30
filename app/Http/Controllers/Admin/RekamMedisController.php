@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\JanjiTemu;
 use App\Models\RekamMedis;
 use Illuminate\Http\Request;
 
@@ -40,6 +41,9 @@ class RekamMedisController extends Controller
             return redirect()->back()->with('error', 'Rekam Medis for this appointment already exists.');
         }
 
+        $janjiTemu = JanjiTemu::findOrFail($janji_temu_id);
+        $pasienId = $janjiTemu->pasien_id;
+
         $request->validate([
             'diagnosis' => 'required',
             'obat' => 'required',
@@ -48,6 +52,7 @@ class RekamMedisController extends Controller
 
         RekamMedis::create([
             'janji_temu_id' => $janji_temu_id,
+            'pasien_id' => $pasienId,
             'diagnosis' => $request->diagnosis,
             'obat' => $request->obat,
             'tindakan' => $request->tindakan,

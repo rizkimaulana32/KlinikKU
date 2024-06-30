@@ -11,7 +11,7 @@ class RekamMedisController extends Controller
     public function index()
     {
         if (!auth()->user()->pasien) {
-            return redirect('/pasien/dokter')->withErrors('Tolong lengkapi profil Anda terlebih dahulu sebelum mengakses Rekam Medis.');
+            return redirect('/pasien/profile')->withErrors('Tolong lengkapi profil Anda terlebih dahulu sebelum mengakses Rekam Medis.');
         }
 
         $data = RekamMedis::where('pasien_id', auth()->user()->pasien->id)->get();

@@ -22,7 +22,7 @@ class JanjiTemuFactory extends Factory
             'date' => $this->faker->dateTimeBetween('now', '+1 year')->format('Y-m-d'),
             'start_time' => $this->faker->time(),
             'end_time' => $this->faker->time(),
-            'status' => $this->faker->randomElement(['Scheduled', 'Completed', 'Cancelled']),
+            'status' => $this->faker->randomElement(['Scheduled', 'Completed']),
             'note' => $this->faker->sentence(),
         ];
     }

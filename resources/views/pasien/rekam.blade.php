@@ -1,56 +1,103 @@
 @extends('layouts.app')
+
 @section('content')
-    <section id="record"><!-- Record Status Section -->
-        <div class="container mt-5">
-            <div class="record-card">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="text-center record-title">Hasil Rekam Medis</div>
-                    </div>
+    <!-- Record Status Section -->
+    <section id="record" class="py-8 mt-12 ">
+        <div class="container px-4 mx-auto">
+            @if ($data->isEmpty())
+                <div class="text-center text-gray-600">Anda belum memiliki rekam medis.</div>
+            @else
+                <div class="grid grid-cols-1 gap-6 mt-6">
+                    @foreach ($data as $record)
+                        <div class="overflow-hidden bg-white rounded-lg shadow-md">
+                            <div class="p-4">
+                                <h2 class="mb-2 text-xl font-bold text-gray-800">Hasil Rekam Medis</h2>
+                                <div class="mb-4 text-sm text-gray-600">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block mr-1.5"
+                                        viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd"
+                                            d="M10 19a9 9 0 100-18 9 9 0 000 18zm-1.5-5a.5.5 0 01.492.41l.008.09v.75a.5.5 0 01-1 0v-.75a.5.5 0 01.5-.5zm1-4.5a.5.5 0 00-1 0v2.5a.5.5 0 001 0v-2.5z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    Tanggal Konsultasi: {{ date('d F Y', strtotime($record->janjiTemu->date)) }} /
+                                    Jam Konsultasi: {{ date('H:i', strtotime($record->janjiTemu->start_time)) }} -
+                                    {{ date('H:i', strtotime($record->janjiTemu->end_time)) }}
+                                </div>
+                                <div class="flex justify-end mt-4">
+                                    <button
+                                        class="px-4 py-2 mr-2 text-white bg-blue-500 rounded-lg shadow hover:bg-blue-600 show-more-btn"
+                                        data-bs-toggle="modal" data-bs-target="#recordModal{{ $record->id }}">
+                                        Show More
+                                    </button>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="recordModal{{ $record->id }}" tabindex="-1"
+                                        aria-labelledby="recordModalLabel{{ $record->id }}" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="bg-gray-200 modal-header">
+                                                    <h5 class="text-gray-800 modal-title"
+                                                        id="recordModalLabel{{ $record->id }}">Detail Rekam Medis</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="mb-4">
+                                                        <div class="flex items-center text-sm text-gray-600">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1.5"
+                                                                viewBox="0 0 20 20" fill="currentColor">
+                                                                <path fill-rule="evenodd"
+                                                                    d="M10 19a9 9 0 100-18 9 9 0 000 18zm-1.5-5a.5.5 0 01.492.41l.008.09v.75a.5.5 0 01-1 0v-.75a.5.5 0 01.5-.5zm1-4.5a.5.5 0 00-1 0v2.5a.5.5 0 001 0v-2.5z"
+                                                                    clip-rule="evenodd" />
+                                                            </svg>
+                                                            <span>
+                                                                Tanggal Konsultasi:
+                                                                {{ date('d F Y', strtotime($record->janjiTemu->date)) }} /
+                                                                Jam Konsultasi:
+                                                                {{ date('H:i', strtotime($record->janjiTemu->start_time)) }}
+                                                                -
+                                                                {{ date('H:i', strtotime($record->janjiTemu->end_time)) }}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-4">
+                                                        <h3 class="text-lg font-semibold text-gray-700">Informasi Dokter
+                                                        </h3>
+                                                        <p><strong>Nama Dokter:</strong>
+                                                            {{ $record->janjiTemu->dokter->name }}</p>
+                                                        <p><strong>Spesialisasi:</strong>
+                                                            {{ $record->janjiTemu->dokter->spesialis }}</p>
+                                                    </div>
+                                                    <div class="mb-4">
+                                                        <div class="text-sm text-gray-700">Keluhan:</div>
+                                                        <p class="text-gray-800">{{ $record->janjiTemu->note }}</p>
+                                                    </div>
+                                                    <div class="mb-4">
+                                                        <div class="text-sm text-gray-700">Diagnosis:</div>
+                                                        <p class="text-gray-800">{{ $record->diagnosis }}</p>
+                                                    </div>
+                                                    <div class="mb-4">
+                                                        <div class="text-sm text-gray-700">Resep Obat:</div>
+                                                        <p class="text-gray-800">{{ $record->obat }}</p>
+                                                    </div>
+                                                    <div class="mb-4">
+                                                        <div class="text-sm text-gray-700">Tindakan:</div>
+                                                        <p class="text-gray-800">{{ $record->tindakan }}</p>
+                                                    </div>
+                                                </div>
+                                                {{-- <div class="bg-gray-200 modal-footer">
+                                                    <button type="button"
+                                                        class="px-4 py-2 ml-2 text-white bg-blue-500 rounded-lg shadow hover:bg-blue-600"
+                                                        data-dismiss="modal">Cetak</button>
+                                                </div> --}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
-                <div class="row record-section">
-                    <div class="col-md-6">
-                        <h5>Informasi Pasien</h5>
-                        <p><strong>Nama:</strong> John Doe</p>
-                        <p><strong>Usia:</strong> 30 tahun</p>
-                        <p><strong>Jenis Kelamin:</strong> Laki-laki</p>
-                    </div>
-                    <div class="col-md-6">
-                        <h5>Informasi Dokter</h5>
-                        <p><strong>Nama Dokter:</strong> Dr. Jane Smith</p>
-                        <p><strong>Spesialisasi:</strong> Kardiologi</p>
-                        <p><strong>Tanggal Konsultasi:</strong> 20 Mei 2024</p>
-                    </div>
-                </div>
-                <div class="row record-section">
-                    <div class="col-md-12">
-                        <h5>Diagnosis</h5>
-                        <p>Penyakit jantung koroner yang membutuhkan penanganan lanjutan dan pemantauan rutin.</p>
-                    </div>
-                </div>
-                <div class="row record-section">
-                    <div class="col-md-12">
-                        <h5>Resep dan Pengobatan</h5>
-                        <p><strong>Obat:</strong> Aspirin, 81 mg, 1 kali sehari</p>
-                        <p><strong>Catatan:</strong> Harus dikonsumsi setelah makan untuk menghindari iritasi
-                            lambung.</p>
-                    </div>
-                </div>
-                <div class="row record-section">
-                    <div class="col-md-12">
-                        <h5>Saran dan Tindak Lanjut</h5>
-                        <p>Pasien disarankan untuk melakukan pemeriksaan lanjutan dalam waktu satu bulan serta
-                            menjaga pola
-                            makan dan rutin berolahraga ringan.</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12 record-buttons">
-                        <button class="btn btn-primary">Cetak</button>
-                        <button class="btn btn-secondary">Unduh PDF</button>
-                    </div>
-                </div>
-            </div>
+            @endif
         </div>
     </section>
 @endsection

@@ -8,8 +8,10 @@ use App\Http\Controllers\Admin\JadwalDokterController;
 use App\Http\Controllers\Admin\JanjiTemuController;
 use App\Http\Controllers\Admin\LaporanController;
 use App\Http\Controllers\Admin\PasienController;
+use App\Http\Controllers\Admin\ProfileAdminController;
 use App\Http\Controllers\Admin\RekamMedisController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Dokter\ProfileDokterController;
 use App\Http\Controllers\Pasien\JadwalController as PasienJadwalController;
 use App\Http\Controllers\Pasien\JanjiTemuController as PasienJanjiTemuController;
 use App\Http\Controllers\Pasien\RekamMedisController as PasienRekamMedisController;
@@ -21,15 +23,6 @@ require __DIR__ . '/auth.php';
 
 Route::get('/', [DashboardController::class, 'index'])->middleware('guest')->name('dashboard');
 Route::get('/fetch-available-schedules/{doctor_id}/{date}', [DashboardController::class, 'fetchAvailableSchedules']);
-
-Route::get('/status', function () {
-    return view('pasien.status');
-});
-
-Route::get('/rekammedis', function () {
-    return view('pasien.rekam');
-});
-
 
 Route::middleware(['auth', 'userAkses:pasien', 'web'])->group(function () {
     Route::get('/pasien/dashboard', function () {
@@ -47,7 +40,9 @@ Route::middleware(['auth', 'userAkses:pasien', 'web'])->group(function () {
     Route::get('/pasien/dokter', [PasienJadwalController::class, 'index']);
     Route::get('/get-available-slots/{doctor}', [PasienJadwalController::class, 'getAvailableSlots']);
     Route::post('/pasien/janjitemu/{doctor_id}', [PasienJanjiTemuController::class, 'store']);
-    Route::get('/pasien/janjitemu', [PasienJanjiTemuController::class, 'show']);
+    Route::get('/pasien/janjitemu', [PasienJanjiTemuController::class, 'index']);
+    Route::delete('/pasien/janjitemu/{id}/dokter/{dokter_id}', [PasienJanjiTemuController::class, 'destroy']);
+    Route::put('/pasien/janjitemu/{id}', [PasienJanjiTemuController::class, 'update']);
     Route::get('/pasien/rekammedis', [PasienRekamMedisController::class, 'index']);
 });
 
@@ -59,10 +54,12 @@ Route::middleware(['auth', 'userAkses:admin'])->group(function () {
     Route::resource('/admin/pasien', PasienController::class);
     Route::resource('/admin/dokter', DokterController::class);
 
+    Route::get('admin/profile', [ProfileAdminController::class, 'index']);
+    Route::put('admin/profile', [ProfileAdminController::class, 'update']);
+
     Route::get('admin/laporan', [LaporanController::class, 'index']);
     Route::post('admin/laporan/generate', [LaporanController::class, 'generate']);
     Route::get('admin/laporan/{startDate}/{endDate}/download', [LaporanController::class, 'download']);
-
 
     Route::get('/admin/list', [DokterController::class, 'list']);
 
@@ -91,6 +88,9 @@ Route::middleware(['auth', 'userAkses:dokter'])->group(function () {
     Route::get('/dokter/dashboard', function () {
         return view('dokter.dashboard');
     })->name('dokter.dashboard');
+
+    Route::get('/dokter/profile', [ProfileDokterController::class, 'index']);
+    Route::put('/dokter/profile', [ProfileDokterController::class, 'update']);
 
     Route::resource('/dokter/jadwal', JadwalController::class);
     Route::resource('/dokter/janjitemu', JanjiTemuDokterController::class);

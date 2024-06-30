@@ -18,6 +18,7 @@ class Pasien extends Model
         'gender',
         'address',
         'phone',
+        'user_id',
     ];
 
     /**
