@@ -5,67 +5,66 @@
     <section id="hero" class="d-flex align-items-center">
         <div class="container">
             <h1>Welcome to Klinikku</h1>
-            <h2>We are team of talented designers making websites with Bootstrap</h2>
+            <h2>Solusi Kesehatan Terlengkap</h2>
             <a href="{{ route('register') }}" class="btn-get-started">Register</a>
         </div>
     </section>
 
     <main id="main">
         <!-- ======= Why Us Section ======= -->
-        <section id="why-us" class="why-us">
-            <div class="container">
+    <section id="why-us" class="why-us">
+        <div class="container">
 
-                <div class="row">
-                    <div class="col-lg-4 d-flex align-items-stretch">
-                        <div class="content">
-                            <h3>Why Choose Medilab?</h3>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                incididunt ut labore et
-                                dolore magna aliqua. Duis aute irure dolor in reprehenderit
-                                Asperiores dolores sed et. Tenetur quia eos. Autem tempore quibusdam vel necessitatibus
-                                optio ad
-                                corporis.
-                            </p>
-                            <div class="text-center">
-                                <a href="#" class="more-btn">Learn More <i class="bx bx-chevron-right"></i></a>
+            <div class="row">
+                <div class="col-lg-4 d-flex align-items-stretch">
+                    <div class="content">
+                        <h3>Kenapa harus klinikku?</h3>
+                        <p>
+                            Kami menyediakan akses cepat dan mudah dalam layanan kesehatan seperti pendaftaran
+                            pasien online,
+                            pengelolaan jadwal dokter yang fleksibel, akses cepat ke rekam medis, dan kemampuan
+                            untuk
+                            membuat laporan serta analisis data anda.
+                        </p>
+                        <div class="text-center">
+                            <a href="#" class="more-btn">Learn More <i class="bx bx-chevron-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8 d-flex align-items-stretch">
+                    <div class="icon-boxes d-flex flex-column justify-content-center">
+                        <div class="row">
+                            <div class="col-xl-4 d-flex align-items-stretch">
+                                <div class="mt-4 icon-box mt-xl-0">
+                                    <i class="bx bx-receipt"></i>
+                                    <h4>Pendaftaran Secara Online</h4>
+                                    <p>daftar secara online melalui website Klinikku. Anda dapat
+                                        memilih dokter atau layanan yang diinginkan, dan membuat
+                                        janji temu tanpa harus datang langsung ke klinik.</p>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 d-flex align-items-stretch">
+                                <div class="mt-4 icon-box mt-xl-0">
+                                    <i class="bx bx-cube-alt"></i>
+                                    <h4>Lihat Jadwal Dokter</h4>
+                                    <p>Lihat jadwal dokter secara real-time dan pilih waktu yang sesuai dengan jadwal Anda. 
+                                        Kami menawarkan fleksibilitas untuk menyesuaikan janji temu Anda dengan jadwal dokter yang tersedia.</p>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 d-flex align-items-stretch">
+                                <div class="mt-4 icon-box mt-xl-0">
+                                    <i class="bx bx-images"></i>
+                                    <h4>Akses Rekam Medis</h4>
+                                    <p>Akses rekam medis Anda dengan mudah dan cepat melalui platform kami. 
+                                        Semua data kesehatan Anda disimpan dengan aman dan dapat diakses kapan saja sesuai kebutuhan Anda.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-8 d-flex align-items-stretch">
-                        <div class="icon-boxes d-flex flex-column justify-content-center">
-                            <div class="row">
-                                <div class="col-xl-4 d-flex align-items-stretch">
-                                    <div class="mt-4 icon-box mt-xl-0">
-                                        <i class="bx bx-receipt"></i>
-                                        <h4>Corporis voluptates sit</h4>
-                                        <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut
-                                            aliquip</p>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 d-flex align-items-stretch">
-                                    <div class="mt-4 icon-box mt-xl-0">
-                                        <i class="bx bx-cube-alt"></i>
-                                        <h4>Ullamco laboris ladore pan</h4>
-                                        <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                                            deserunt</p>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 d-flex align-items-stretch">
-                                    <div class="mt-4 icon-box mt-xl-0">
-                                        <i class="bx bx-images"></i>
-                                        <h4>Labore consequatur</h4>
-                                        <p>Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis
-                                            facere</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!-- End .content-->
-                    </div>
                 </div>
-
             </div>
-        </section><!-- End Why Us Section -->
+        </div>
+    </section><!-- End Why Us Section -->
 
         <!-- ======= About Section ======= -->
         <section id="about" class="about">
@@ -81,37 +80,37 @@
 
                     <div
                         class="py-5 col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center px-lg-5">
-                        <h3>Enim quis est voluptatibus aliquid consequatur fugiat</h3>
-                        <p>Esse voluptas cumque vel exercitationem. Reiciendis est hic accusamus. Non ipsam et sed
-                            minima temporibus
-                            laudantium. Soluta voluptate sed facere corporis dolores excepturi. Libero laboriosam
-                            sint
-                            et id nulla
-                            tenetur. Suscipit aut voluptate.</p>
+                        <h3>Tentang Klinikku</h3>
+                        <p>Klinikku adalah pusat layanan kesehatan yang berdedikasi untuk memberikan perawatan yang terbaik dan terpercaya bagi masyarakat. Kami mengutamakan kenyamanan dan kemudahan akses untuk semua pasien kami.</p>
 
                         <div class="icon-box">
-                            <div class="icon"><i class="bx bx-fingerprint"></i></div>
-                            <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-                            <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias
-                                excepturi sint
-                                occaecati cupiditate non provident</p>
+                            <div class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-chat-heart" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M2.965 12.695a1 1 0 0 0-.287-.801C1.618 10.83 1 9.468 1 8c0-3.192 3.004-6 7-6s7 2.808 7 6-3.004 6-7 6a8 8 0 0 1-2.088-.272 1 1 0 0 0-.711.074c-.387.196-1.24.57-2.634.893a11 11 0 0 0 .398-2m-.8 3.108.02-.004c1.83-.363 2.948-.842 3.468-1.105A9 9 0 0 0 8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6a10.4 10.4 0 0 1-.524 2.318l-.003.011a11 11 0 0 1-.244.637c-.079.186.074.394.273.362a22 22 0 0 0 .693-.125M8 5.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132"/>
+                                </svg>
+                            </div>
+                            <h4 class="title"><a href="">Komitmen Kami</a></h4>
+                            <p class="description">Komitmen kami adalah memberikan pelayanan kesehatan yang terbaik dengan mengutamakan kebutuhan dan kenyamanan pasien. Kami selalu berusaha untuk meningkatkan kualitas layanan kami.</p>
                         </div>
 
                         <div class="icon-box">
-                            <div class="icon"><i class="bx bx-gift"></i></div>
-                            <h4 class="title"><a href="">Nemo Enim</a></h4>
-                            <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui
-                                blanditiis
-                                praesentium voluptatum deleniti atque</p>
+                            <div class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-display" viewBox="0 0 16 16">
+                                    <path d="M0 4s0-2 2-2h12s2 0 2 2v6s0 2-2 2h-4q0 1 .25 1.5H11a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1h.75Q6 13 6 12H2s-2 0-2-2zm1.398-.855a.76.76 0 0 0-.254.302A1.5 1.5 0 0 0 1 4.01V10c0 .325.078.502.145.602q.105.156.302.254a1.5 1.5 0 0 0 .538.143L2.01 11H14c.325 0 .502-.078.602-.145a.76.76 0 0 0 .254-.302 1.5 1.5 0 0 0 .143-.538L15 9.99V4c0-.325-.078-.502-.145-.602a.76.76 0 0 0-.302-.254A1.5 1.5 0 0 0 13.99 3H2c-.325 0-.502.078-.602.145"/>
+                                </svg>
+                            </div>
+                            <h4 class="title"><a href="">Teknologi Terkini</a></h4>
+                            <p class="description">Kami menggunakan teknologi terkini untuk memastikan bahwa Anda mendapatkan perawatan yang efisien dan tepat waktu. Dengan sistem online kami, Anda dapat dengan mudah mengakses layanan kami kapan saja dan di mana saja</p>
                         </div>
 
                         <div class="icon-box">
-                            <div class="icon"><i class="bx bx-atom"></i></div>
-                            <h4 class="title"><a href="">Dine Pad</a></h4>
-                            <p class="description">Explicabo est voluptatum asperiores consequatur magnam. Et
-                                veritatis
-                                odit. Sunt aut
-                                deserunt minus aut eligendi omnis</p>
+                            <div class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-person-heart" viewBox="0 0 16 16">
+                                    <path d="M9 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0m-9 8c0 1 1 1 1 1h10s1 0 1-1-1-4-6-4-6 3-6 4m13.5-8.09c1.387-1.425 4.855 1.07 0 4.277-4.854-3.207-1.387-5.702 0-4.276Z"/>
+                                </svg>
+                            </div>
+                            <h4 class="title"><a href="">Pengalaman Pasien</a></h4>
+                            <p class="description">Kami percaya bahwa setiap pasien adalah prioritas utama. Oleh karena itu, kami berfokus pada memberikan pengalaman pelayanan yang ramah, profesional, dan penuh perhatian.</p>
                         </div>
 
                     </div>
@@ -124,8 +123,8 @@
 
             <div class="container">
                 <div class="section-title">
-                    <h2>Doctors' Schedule</h2>
-                    <p>Check the schedule of our doctors below.</p>
+                    <h2>Jadwal Dokter</h2>
+                    <p>Silahkan melihat jadwal dokter, di bawah ini</p>
                 </div>
 
                 <div class="row">
@@ -229,11 +228,7 @@
         <div class="container">
             <div class="section-title">
                 <h2>Gallery</h2>
-                <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit
-                    sint
-                    consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea.
-                    Quia fugiat sit
-                    in iste officiis commodi quidem hic quas.</p>
+                <p>Di sini Anda dapat melihat berbagai foto dan momen berharga dari aktivitas dan layanan yang kami tawarkan di Klinikku. Kami bangga dapat memberikan pelayanan terbaik kepada semua pasien kami.</p>
             </div>
         </div>
 
@@ -309,72 +304,64 @@
         </div>
     </section><!-- End Gallery Section -->
 
-    <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact">
-        <div class="container">
-
-            <div class="section-title">
-                <h2>Contact</h2>
-                <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit
-                    sint
-                    consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea.
-                    Quia fugiat sit
-                    in iste officiis commodi quidem hic quas.</p>
-            </div>
+<!-- ======= Contact Section ======= -->
+<section id="contact" class="contact">
+    <div class="container">
+        <div class="section-title">
+            <h2>Kontak</h2>
+            <p>Hubungi kami untuk informasi lebih lanjut tentang layanan kami. Kami siap membantu Anda dengan segala kebutuhan kesehatan Anda.</p>
         </div>
+    </div>
 
-        <div>
-            <iframe style="border:0; width: 100%; height: 350px;"
-                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621"
-                frameborder="0" allowfullscreen></iframe>
-        </div>
+    <div>
+        <iframe style="border:0; width: 100%; height: 350px;"
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15830.11028309791!2d110.8573699!3d-7.5582735!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a143e0e39b97b%3A0x15cc150c144c67b4!2sUniversitas%20Sebelas%20Maret!5e0!3m2!1sid!2sid!4v1626899087478!5m2!1sid!2sid"
+            frameborder="0" allowfullscreen></iframe>
+    </div>
 
-
-        <div class="container">
-            <div class="mt-5 row">
-
-                <div class="col-lg-4">
-                    <div class="info">
-                        <div class="address">
-                            <i>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                    fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-                                    <path
-                                        d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
-                                </svg>
-                            </i>
+    <div class="container">
+        <div class="mt-5 row justify-content-center">
+            <div class="col-lg-10">
+                <div class="info d-flex justify-content-around align-items-center">
+                    <div class="contact-item d-flex align-items-center">
+                        <i class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                                <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
+                            </svg>
+                        </i>
+                        <div>
                             <h4>Location:</h4>
-                            <p>A108 Adam Street, New York, NY 535022</p>
+                            <p>Jl. Ir. Sutami No.36 A, Surakarta, Jawa Tengah 57126</p>
                         </div>
+                    </div>
 
-                        <div class="email">
-                            <i>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                    fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
-                                    <path
-                                        d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z" />
-                                </svg>
-                            </i>
+                    <div class="contact-item d-flex align-items-center">
+                        <i class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                                <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z" />
+                            </svg>
+                        </i>
+                        <div>
                             <h4>Email:</h4>
-                            <p>info@example.com</p>
+                            <p>info@uns.ac.id</p>
                         </div>
+                    </div>
 
-                        <div class="phone">
-                            <i>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                    fill="currentColor" class="bi bi-phone-fill" viewBox="0 0 16 16">
-                                    <path
-                                        d="M3 2a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zm6 11a1 1 0 1 0-2 0 1 1 0 0 0 2 0" />
-                                </svg>
-                            </i>
+                    <div class="contact-item d-flex align-items-center">
+                        <i class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-phone-fill" viewBox="0 0 16 16">
+                                <path d="M3 2a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zm6 11a1 1 0 1 0-2 0 1 1 0 0 0 2 0" />
+                            </svg>
+                        </i>
+                        <div>
                             <h4>Call:</h4>
-                            <p>+1 5589 55488 55s</p>
+                            <p>+62 271 637 697</p>
                         </div>
 
                     </div>
                 </div>
 
-                <div class="col-lg-4">
+                {{-- <div class="col-lg-4">
                     <div class="info">
                         <div class="address">
                             <i class="bi bi-geo-alt"></i>
@@ -415,7 +402,7 @@
                             <i class="bi bi-phone"></i>
                             <h4>Call:</h4>
                             <p>+1 5589 55488 55s</p>
-                        </div>
+                        </div> --}}
 
                     </div>
                 </div>

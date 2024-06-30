@@ -11,7 +11,7 @@
     </section><!-- End Hero -->
 
     <!-- ======= Why Us Section ======= -->
-    <section id="why-us" class="why-us">
+    {{-- <section id="why-us" class="why-us">
         <div class="container">
 
             <div class="row">
@@ -63,5 +63,5 @@
                 </div>
             </div>
         </div>
-    </section><!-- End Why Us Section -->
+    </section><!-- End Why Us Section --> --}}
 @endsection
