@@ -41,40 +41,35 @@
     php artisan key:generate
     ```
 
-6. Install Laravel Breeze:
-
-    ```bash
-    composer require laravel/breeze
-    ```
-     ```bash
-    php artisan breeze:install
-    ```
-
-7. Install DomPDF:
+6. Install DomPDF:
 
     ```bash
     composer require barryvdh/laravel-dompdf
     ```
 
-8. Create a storage symlink:
+7. Create a storage symlink:
 
     ```bash
     php artisan storage:link
     ```
 
-9. Migrate the database and seed (if applicable):
+8. Migrate the database and seed (if applicable):
 
     ```bash
     php artisan migrate --seed
     ```
 
-10. (Optional) Install npm dependencies and build assets:
+9. Install npm dependencies and build assets:
 
     ```bash
-    npm install && npm run dev
+    npm install
     ```
 
-11. Start the development server:
+    ```bash
+    npm run dev
+    ```
+
+10. Start the development server:
 
     ```bash
     php artisan serve

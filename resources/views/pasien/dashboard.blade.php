@@ -4,7 +4,13 @@
     <!-- ======= Hero Section ======= -->
     <section id="hero" class="d-flex align-items-center">
         <div class="container">
-            <h1>Welcome to Klinikku</h1>
+            @if (!auth()->user()->pasien)
+                <h1>Welcome to Klinikku</h1>
+            @else
+                <h1>Welcome <span
+                        class="text-transparent bg-gradient-to-r from-blue-800 via-blue-400 to-blue-500 bg-clip-text">{{ auth()->user()->pasien->name }}</span>
+                    to Klinikku</h1>
+            @endif
             <h2>Solusi Kesehatan Terlengkap</h2>
             <a href="{{ url('/pasien/dokter') }}" class="btn-get-started">Choose Dokter</a>
         </div>

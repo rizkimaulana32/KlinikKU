@@ -8,8 +8,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Klinkku</title>
 
-    <link href="img/favicon.png" rel="icon">
-    <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+    {{-- image --}}
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml;base64,{{ base64_encode(view('components.application-logo')->render()) }}">
+
 
     <link
         href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"

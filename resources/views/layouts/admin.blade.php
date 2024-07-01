@@ -6,7 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Klinikku</title>
+
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml;base64,{{ base64_encode(view('components.application-logo')->render()) }}">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
