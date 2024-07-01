@@ -12,8 +12,8 @@
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal</label>
                         <input type="date" name="date" id="date"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                            placeholder="Type date" required="">
-                            @error('date')
+                            placeholder="Type date" required>
+                        @error('date')
                             <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
                         @enderror
                     </div>
@@ -34,8 +34,8 @@
                             Waktu Mulai</label>
                         <input type="time" name="start_time" id="start_time"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                            placeholder="Type start time" required="">
-                            @error('start_time')
+                            placeholder="Type start time" required>
+                        @error('start_time')
                             <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
                         @enderror
                     </div>
@@ -44,8 +44,8 @@
                             Waktu Akhir</label>
                         <input type="time" name="end_time" id="end_time"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                            placeholder="Type end time" required="">
-                            @error('end_time')
+                            placeholder="Type end time" required>
+                        @error('end_time')
                             <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
                         @enderror
                     </div>

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\JadwalDokter;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,12 +17,18 @@ class JanjiTemuFactory extends Factory
      */
     public function definition(): array
     {
+        // Fetch a random existing JadwalDokter record
+        $jadwalDokter = JadwalDokter::inRandomOrder()->first();
+
+        // Update JadwalDokter status to 'Unavailable'
+        $jadwalDokter->update(['status' => 'Unavailable']);
+
         return [
-            'dokter_id' => $this->faker->numberBetween(1, 5),
+            'dokter_id' => $jadwalDokter->dokter_id,
             'pasien_id' => $this->faker->numberBetween(1, 10),
-            'date' => $this->faker->dateTimeBetween('now', '+1 year')->format('Y-m-d'),
-            'start_time' => $this->faker->time(),
-            'end_time' => $this->faker->time(),
+            'date' => $jadwalDokter->date,
+            'start_time' => $jadwalDokter->start_time,
+            'end_time' => $jadwalDokter->end_time,
             'status' => $this->faker->randomElement(['Scheduled', 'Completed']),
             'note' => $this->faker->sentence(),
         ];

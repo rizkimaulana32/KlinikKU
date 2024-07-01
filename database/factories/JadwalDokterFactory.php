@@ -17,10 +17,10 @@ class JadwalDokterFactory extends Factory
     public function definition(): array
     {
         return [
-            'dokter_id' => $this->faker->numberBetween(1, 5),
-            'date' => $this->faker->dateTimeBetween('now', '+1 week')->format('Y-m-d'),
-            'start_time' => $this->faker->time(),
-            'end_time' => $this->faker->time(),
+            'dokter_id' => $this->faker->numberBetween(1, 8),
+            'date' => $this->faker->dateTimeBetween('now', '+3 days')->format('Y-m-d'),
+            'start_time' => $this->faker->time('H:i'),
+            'end_time' => $this->faker->time('H:i'),
             'status' => $this->faker->randomElement(['Available', 'Unavailable']),
         ];
     }

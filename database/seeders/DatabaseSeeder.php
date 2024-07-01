@@ -6,6 +6,7 @@ use App\Models\Dokter;
 use App\Models\JadwalDokter;
 use App\Models\JanjiTemu;
 use App\Models\Pasien;
+use App\Models\RekamMedis;
 use App\Models\User;
 use Database\Factories\UserDokterFactory;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -19,17 +20,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // create pasien
+        // create pasien (1-10)
         User::factory(10)->create();
         Pasien::factory(10)->create();
 
-        // create dokter
-        User::factory(5)->create(
+        // create dokter (11-18)
+        User::factory(8)->create(
             [
                 'role' => 'dokter',
             ]
         );
-        Dokter::factory(5)->create();
+        Dokter::factory(8)->create();
 
         User::factory()->create([
             'username' => 'admin',
@@ -38,8 +39,9 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('password'),
         ]);
 
-        JadwalDokter::factory(20)->create();
-        JanjiTemu::factory(20)->create();
+        JadwalDokter::factory(25)->create();
+        JanjiTemu::factory(15)->create();
+        RekamMedis::factory(10)->create();
     }
 }
 

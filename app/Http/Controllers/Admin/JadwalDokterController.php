@@ -46,6 +46,16 @@ class JadwalDokterController extends Controller
      */
     public function store(Request $request, string $dokter_id)
     {
+        if (JadwalDokter::where('dokter_id', $dokter_id)
+            ->where('date', $request->date)
+            ->where(function ($query) use ($request) {
+                $query->where('start_time', $request->start_time)
+                    ->orWhere('end_time', $request->end_time);
+            })
+            ->exists()
+        ) {
+            return redirect('/admin/list/' . $dokter_id . '/jadwal')->with('error', 'Failed to create. Doctor\'s schedule already exists');
+        }
 
         $request->validate([
             'date' => 'required',
@@ -80,6 +90,17 @@ class JadwalDokterController extends Controller
      */
     public function update(Request $request, string $dokter_id, string $jadwal_id)
     {
+        if (JadwalDokter::where('dokter_id', $dokter_id)
+            ->where('date', $request->date)
+            ->where(function ($query) use ($request) {
+                $query->where('start_time', $request->start_time)
+                    ->orWhere('end_time', $request->end_time);
+            })
+            ->exists()
+        ) {
+            return redirect('/admin/list/' . $dokter_id . '/jadwal')->with('error', 'Failed to update. Doctor\'s schedule already exists');
+        }
+
         $request->validate([
             'date' => 'required',
             'start_time' => 'required',

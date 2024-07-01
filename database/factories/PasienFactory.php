@@ -23,12 +23,12 @@ class PasienFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
-            // generae urut number 1 sampai 10
+            // generate urut number 1 sampai 10
             'user_id' => $this->faker->unique()->numberBetween(1, 10), // Generate unique user_id between 1 and 10
             'birth_date' => $this->faker->date(),
             // enum gender
             'gender' => $this->faker->randomElement(['Laki-laki', 'Perempuan']),
-            'age' => $this->faker->numberBetween(18, 80),
+            'age' => $this->faker->numberBetween(18, 50),
             'address' => $this->faker->address,
             'phone' => $this->faker->phoneNumber,
         ];

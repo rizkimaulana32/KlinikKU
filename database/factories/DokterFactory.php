@@ -18,7 +18,7 @@ class DokterFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
-            'user_id' => $this->faker->unique()->numberBetween(11, 15), // Generate unique user_id between 1 and 10
+            'user_id' => $this->faker->unique()->numberBetween(11, 18), // Generate unique user_id between 1 and 10
             'gender' => $this->faker->randomElement(['Laki-laki', 'Perempuan']),
             'age' => $this->faker->numberBetween(18, 80),
             'spesialis' => $this->faker->jobTitle,

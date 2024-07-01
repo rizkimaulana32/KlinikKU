@@ -5,6 +5,7 @@
         <div class="pt-8 mt-8 bg-white">
             <div class="container max-w-full mx-auto">
                 @include('components.success-flash-tw')
+                @include('components.error-flash-tw')
                 <div class="flex items-center justify-between mb-4">
                     <a href="{{ url('/admin/list') }}"
                         class="px-4 py-2 text-sm font-medium text-blue-700 bg-white border border-blue-700 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-blue-300">Back</a>

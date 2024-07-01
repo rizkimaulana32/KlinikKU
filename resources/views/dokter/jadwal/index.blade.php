@@ -6,6 +6,7 @@
             <div class="container max-w-full mx-auto">
                 <div class="container max-w-full mx-auto">
                     @include('components.success-flash-tw')
+                    @include('components.error-flash-tw')
                     <h2 class="mb-4 text-2xl font-bold text-center text-gray-900">Schedule Table</h2>
 
                     <div class="flex flex-col mt-4 mb-4 sm:flex-row sm:justify-between">
