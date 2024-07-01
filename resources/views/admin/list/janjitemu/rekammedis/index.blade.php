@@ -5,6 +5,7 @@
         <div class="pt-8 mt-8 bg-white">
             <div class="container max-w-full mx-auto">
                 @include('components.success-flash-tw')
+                @include('components.error-flash-tw')
                 <div class="flex flex-row mb-4">
                     <div class="basis-1/3">
                         <a href="{{ url('/admin/list/' . $dokter_id . '/janjitemu') }}"

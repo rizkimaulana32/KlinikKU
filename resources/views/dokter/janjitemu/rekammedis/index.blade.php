@@ -4,6 +4,7 @@
     <section class="p-4 sm:ml-64">
         <div class="pt-8 mt-8 bg-white">
             @include('components.success-flash-tw')
+            @include('components.error-flash-tw')
             <div class="container max-w-full mx-auto">
                 <div class="flex flex-row mb-4">
                     <div class="basis-1/3">

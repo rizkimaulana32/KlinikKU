@@ -79,7 +79,6 @@
                 <div class="row">
                     <div
                         class="col-xl-5 col-lg-6 video-box d-flex justify-content-center align-items-stretch position-relative">
-                        {{-- <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="mb-4 glightbox play-btn"></a> --}}
                     </div>
 
                     <div
@@ -91,11 +90,13 @@
 
                         <div class="icon-box">
                             <div class="icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
-                                    class="bi bi-chat-heart " viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd"
-                                        d="M2.965 12.695a1 1 0 0 0-.287-.801C1.618 10.83 1 9.468 1 8c0-3.192 3.004-6 7-6s7 2.808 7 6-3.004 6-7 6a8 8 0 0 1-2.088-.272 1 1 0 0 0-.711.074c-.387.196-1.24.57-2.634.893a11 11 0 0 0 .398-2m-.8 3.108.02-.004c1.83-.363 2.948-.842 3.468-1.105A9 9 0 0 0 8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6a10.4 10.4 0 0 1-.524 2.318l-.003.011a11 11 0 0 1-.244.637c-.079.186.074.394.273.362a22 22 0 0 0 .693-.125M8 5.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132" />
-                                </svg>
+                                <i>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                        fill="currentColor" class="bi bi-chat-heart " viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M2.965 12.695a1 1 0 0 0-.287-.801C1.618 10.83 1 9.468 1 8c0-3.192 3.004-6 7-6s7 2.808 7 6-3.004 6-7 6a8 8 0 0 1-2.088-.272 1 1 0 0 0-.711.074c-.387.196-1.24.57-2.634.893a11 11 0 0 0 .398-2m-.8 3.108.02-.004c1.83-.363 2.948-.842 3.468-1.105A9 9 0 0 0 8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6a10.4 10.4 0 0 1-.524 2.318l-.003.011a11 11 0 0 1-.244.637c-.079.186.074.394.273.362a22 22 0 0 0 .693-.125M8 5.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132" />
+                                    </svg>
+                                </i>
                             </div>
                             <h4 class="title"><a href="">Komitmen Kami</a></h4>
                             <p class="description">Komitmen kami adalah memberikan pelayanan kesehatan yang terbaik dengan
@@ -105,11 +106,13 @@
 
                         <div class="icon-box">
                             <div class="icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
-                                    class="bi bi-display " viewBox="0 0 16 16">
-                                    <path
-                                        d="M0 4s0-2 2-2h12s2 0 2 2v6s0 2-2 2h-4q0 1 .25 1.5H11a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1h.75Q6 13 6 12H2s-2 0-2-2zm1.398-.855a.76.76 0 0 0-.254.302A1.5 1.5 0 0 0 1 4.01V10c0 .325.078.502.145.602q.105.156.302.254a1.5 1.5 0 0 0 .538.143L2.01 11H14c.325 0 .502-.078.602-.145a.76.76 0 0 0 .254-.302 1.5 1.5 0 0 0 .143-.538L15 9.99V4c0-.325-.078-.502-.145-.602a.76.76 0 0 0-.302-.254A1.5 1.5 0 0 0 13.99 3H2c-.325 0-.502.078-.602.145" />
-                                </svg>
+                                <i>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                        fill="currentColor" class="bi bi-display " viewBox="0 0 16 16">
+                                        <path
+                                            d="M0 4s0-2 2-2h12s2 0 2 2v6s0 2-2 2h-4q0 1 .25 1.5H11a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1h.75Q6 13 6 12H2s-2 0-2-2zm1.398-.855a.76.76 0 0 0-.254.302A1.5 1.5 0 0 0 1 4.01V10c0 .325.078.502.145.602q.105.156.302.254a1.5 1.5 0 0 0 .538.143L2.01 11H14c.325 0 .502-.078.602-.145a.76.76 0 0 0 .254-.302 1.5 1.5 0 0 0 .143-.538L15 9.99V4c0-.325-.078-.502-.145-.602a.76.76 0 0 0-.302-.254A1.5 1.5 0 0 0 13.99 3H2c-.325 0-.502.078-.602.145" />
+                                    </svg>
+                                </i>
                             </div>
                             <h4 class="title"><a href="">Teknologi Terkini</a></h4>
                             <p class="description">Kami menggunakan teknologi terkini untuk memastikan bahwa Anda
@@ -119,11 +122,13 @@
 
                         <div class="icon-box">
                             <div class="icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
-                                    class="bi bi-person-heart" viewBox="0 0 16 16">
-                                    <path
-                                        d="M9 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0m-9 8c0 1 1 1 1 1h10s1 0 1-1-1-4-6-4-6 3-6 4m13.5-8.09c1.387-1.425 4.855 1.07 0 4.277-4.854-3.207-1.387-5.702 0-4.276Z" />
-                                </svg>
+                                <i>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                        fill="currentColor" class="bi bi-person-heart" viewBox="0 0 16 16">
+                                        <path
+                                            d="M9 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0m-9 8c0 1 1 1 1 1h10s1 0 1-1-1-4-6-4-6 3-6 4m13.5-8.09c1.387-1.425 4.855 1.07 0 4.277-4.854-3.207-1.387-5.702 0-4.276Z" />
+                                    </svg>
+                                </i>
                             </div>
                             <h4 class="title"><a href="">Pengalaman Pasien</a></h4>
                             <p class="description">Kami percaya bahwa setiap pasien adalah prioritas utama. Oleh karena itu,
@@ -183,9 +188,6 @@
                                             <input type="date" name="date" id="date"
                                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                                 required>
-                                            @error('date')
-                                                <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
-                                            @enderror
                                         </div>
                                         <div id="availableSchedule" class="mt-4 row">
                                             <!-- Tempat untuk menampilkan jadwal yang tersedia -->
@@ -198,6 +200,7 @@
                 </div>
             </div>
         </section>
+
     @section('scripts')
         <script>
             document.addEventListener('DOMContentLoaded', function() {
@@ -341,9 +344,9 @@
 
         <div class="container">
             <div class="mt-5 row justify-content-center">
-                <div class="col-lg-10">
-                    <div class="info d-flex justify-content-around align-items-center">
-                        <div class="contact-item d-flex align-items-center">
+                <div class="col-lg-12">
+                    <div class="info d-flex justify-content-between align-items-center">
+                        <div class="contact-item d-flex align-items-center address">
                             <i class="icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                     fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
@@ -357,7 +360,7 @@
                             </div>
                         </div>
 
-                        <div class="contact-item d-flex align-items-center">
+                        <div class="contact-item d-flex align-items-center email">
                             <i class="icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                     fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
@@ -367,11 +370,11 @@
                             </i>
                             <div>
                                 <h4>Email:</h4>
-                                <p>info@uns.ac.id</p>
+                                <p>kelompok5@student.uns.ac.id</p>
                             </div>
                         </div>
 
-                        <div class="contact-item d-flex align-items-center">
+                        <div class="contact-item d-flex align-items-center phone">
                             <i class="icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                     fill="currentColor" class="bi bi-phone-fill" viewBox="0 0 16 16">
@@ -381,60 +384,12 @@
                             </i>
                             <div>
                                 <h4>Call:</h4>
-                                <p>+62 271 637 697</p>
+                                <p>+62 123 4567 890</p>
                             </div>
-
                         </div>
                     </div>
-
-                    {{-- <div class="col-lg-4">
-                    <div class="info">
-                        <div class="address">
-                            <i class="bi bi-geo-alt"></i>
-                            <h4>Location:</h4>
-                            <p>A108 Adam Street, New York, NY 535022</p>
-                        </div>
-
-                        <div class="email">
-                            <i class="bi bi-envelope"></i>
-                            <h4>Email:</h4>
-                            <p>info@example.com</p>
-                        </div>
-
-                        <div class="phone">
-                            <i class="bi bi-phone"></i>
-                            <h4>Call:</h4>
-                            <p>+1 5589 55488 55s</p>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="col-lg-4">
-                    <div class="info">
-                        <div class="address">
-                            <i class="bi bi-geo-alt"></i>
-                            <h4>Location:</h4>
-                            <p>A108 Adam Street, New York, NY 535022</p>
-                        </div>
-
-                        <div class="email">
-                            <i class="bi bi-envelope"></i>
-                            <h4>Email:</h4>
-                            <p>info@example.com</p>
-                        </div>
-
-                        <div class="phone">
-                            <i class="bi bi-phone"></i>
-                            <h4>Call:</h4>
-                            <p>+1 5589 55488 55s</p>
-                        </div> --}}
-
                 </div>
             </div>
-
-        </div>
-
         </div>
     </section><!-- End Contact Section -->
 </main>
@@ -444,18 +399,17 @@
 <footer id="footer">
     <div class="container py-4 d-md-flex">
         <div class="text-center me-md-auto text-md-start">
-            <div class="copyright">
-                &copy; Copyright <strong><span>Medilab</span></strong>. All Rights Reserved
+            <div>
+                <strong><span>KLINIKKU</span></strong>
             </div>
-            <div class="credits">
-                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            <div>
+                Kelompok 5
             </div>
         </div>
     </div>
 </footer>
 <!-- End Footer -->
 
-<div id="preloader"></div>
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center">
     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="White" class="bi bi-arrow-up"
         viewBox="0 0 16 16">

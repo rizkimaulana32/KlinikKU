@@ -27,6 +27,10 @@ class RekamMedisController extends Controller
      */
     public function create(string $dokter_id, string $janji_temu_id)
     {
+        $status = JanjiTemu::where('id', $janji_temu_id)->first()->status;
+        if ($status === 'Scheduled') {
+            return redirect('/admin/list/' . $dokter_id . '/janjitemu/' . $janji_temu_id . '/rekammedis')->with('error', 'Unable to add Rekam Medis. Status appointment is not yet completed.');
+        }
         return view('admin.list.janjiTemu.rekammedis.create', compact('dokter_id', 'janji_temu_id'));
     }
 

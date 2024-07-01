@@ -903,6 +903,7 @@ section {
 }
 
 .contact .info .email,
+.contact .info .address,
 .contact .info .phone {
     margin-top: 40px;
 }

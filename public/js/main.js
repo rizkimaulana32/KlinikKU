@@ -167,33 +167,4 @@
             }
         }
     });
-
-    /**
-     * Preloader
-     */
-    let preloader = select("#preloader");
-    if (preloader) {
-        window.addEventListener("load", () => {
-            preloader.remove();
-        });
-    }
-
-    /**
-     * Initiate glightbox
-     */
-    // const glightbox = GLightbox({
-    //     selector: ".glightbox",
-    // });
-
-    /**
-     * Initiate Gallery Lightbox
-     */
-    const galelryLightbox = GLightbox({
-        selector: ".galelry-lightbox",
-    });
-
-    /**
-     * Initiate Pure Counter
-     */
-    // new PureCounter();
 })();
