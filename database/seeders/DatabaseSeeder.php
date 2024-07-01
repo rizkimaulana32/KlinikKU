@@ -39,7 +39,7 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('password'),
         ]);
 
-        JadwalDokter::factory(25)->create();
+        JadwalDokter::factory(30)->create();
         JanjiTemu::factory(15)->create();
         RekamMedis::factory(10)->create();
     }
