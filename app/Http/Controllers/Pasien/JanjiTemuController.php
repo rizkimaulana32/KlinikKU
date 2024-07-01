@@ -16,12 +16,11 @@ class JanjiTemuController extends Controller
     {
 
         if (!auth()->user()->pasien) {
-            return redirect('/pasien/profile')->withErrors('Tolong lengkapi profil Anda terlebih dahulu sebelum mengakses janji temu.');
+            return redirect('/pasien/profile')->with('error', 'Tolong lengkapi profil Anda terlebih dahulu sebelum mengakses janji temu.');
         }
 
-        $data = auth()->user()->pasien->janjiTemu;
-
-        // $dataDokter = Dokter::with('jadwalDokter')->get();
+        $pasien_id = auth()->user()->pasien->id;
+        $data = JanjiTemu::where('pasien_id', $pasien_id)->orderBy('id', 'desc')->get();
 
         return view('pasien.janjitemu', compact('data'));
     }
@@ -31,9 +30,17 @@ class JanjiTemuController extends Controller
 
         $user = auth()->user();
 
+        // Validasi input dari form
+        $request->validate([
+            'date' => 'required|date',
+            'slot' => 'required',
+            'note' => 'required',
+            'password' => 'required|min:8',
+        ]);
+
         // Verify password
         if (!Hash::check($request->password, auth()->user()->password)) {
-            return redirect('/pasien/dokter')->withErrors('Password yang dimasukkan tidak sesuai.');
+            return redirect('/pasien/dokter')->with('error', 'Password yang dimasukkan tidak sesuai.');
         }
 
         // Cek kelengkapan profil
@@ -47,7 +54,7 @@ class JanjiTemuController extends Controller
             !$user->pasien->phone
         ) {
             return redirect('/pasien/profile')
-                ->withErrors('Tolong lengkapi profil Anda terlebih dahulu sebelum membuat janji temu.');
+                ->with('error', 'Tolong lengkapi profil Anda terlebih dahulu sebelum membuat janji temu.');
         }
 
         $pasien_id = $user->pasien->id;
@@ -88,7 +95,7 @@ class JanjiTemuController extends Controller
             $request->password,
             auth()->user()->password
         )) {
-            return redirect('/pasien/janjitemu')->withErrors('Password yang dimasukkan tidak sesuai.');
+            return redirect('/pasien/janjitemu')->with('error', 'Password yang dimasukkan tidak sesuai.');
         }
 
 
@@ -129,8 +136,17 @@ class JanjiTemuController extends Controller
 
 
 
-    public function destroy(string $id, string $dokter_id)
+    public function destroy(Request $request, string $id)
     {
+        $request->validate([
+            'password' => 'required|min:8',
+        ]);
+
+        // Verify password
+        if (!Hash::check($request->password, auth()->user()->password)) {
+            return redirect('/pasien/janjitemu')->with('error', 'Password yang dimasukkan tidak sesuai.');
+        }
+
         // Ambil informasi janji temu yang akan dihapus
         $janjiTemu = JanjiTemu::findOrFail($id);
 
@@ -139,7 +155,7 @@ class JanjiTemuController extends Controller
 
         // Perbarui status jadwal dokter menjadi Available jika sudah Scheduled
         if ($janjiTemu->status === 'Scheduled') {
-            JadwalDokter::where('dokter_id', $dokter_id)
+            JadwalDokter::where('dokter_id', $janjiTemu->dokter_id)
                 ->where('date', $janjiTemu->date)
                 ->where('start_time', $janjiTemu->start_time)
                 ->where('end_time', $janjiTemu->end_time)

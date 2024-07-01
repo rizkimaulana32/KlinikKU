@@ -58,7 +58,7 @@ class RekamMedisController extends Controller
             'tindakan' => $request->tindakan,
         ]);
 
-        return redirect('admin/list/' . $dokter_id . '/janjitemu/' . $janji_temu_id . '/rekammedis')->with('success', 'Data Berhasil');
+        return redirect('admin/list/' . $dokter_id . '/janjitemu/' . $janji_temu_id . '/rekammedis')->with('success', 'Rekam Medis created successfully.');
     }
 
     /**
@@ -95,7 +95,7 @@ class RekamMedisController extends Controller
             'tindakan' => $request->tindakan,
         ]);
 
-        return redirect('admin/list/' . $dokter_id . '/janjitemu/' . $janji_temu_id . '/rekammedis')->with('success', 'Data Berhasil');
+        return redirect('admin/list/' . $dokter_id . '/janjitemu/' . $janji_temu_id . '/rekammedis')->with('success', 'Rekam Medis updated successfully.');
     }
 
     /**
@@ -105,6 +105,6 @@ class RekamMedisController extends Controller
     {
         $data = RekamMedis::find($rekam_medis_id);
         $data->delete();
-        return redirect('admin/list/' . $dokter_id . '/janjitemu/' . $janji_temu_id . '/rekammedis')->with('success', 'Data Berhasil');
+        return redirect('admin/list/' . $dokter_id . '/janjitemu/' . $janji_temu_id . '/rekammedis')->with('success', 'Rekam Medis deleted successfully.');
     }
 }

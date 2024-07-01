@@ -91,7 +91,7 @@ class DokterController extends Controller
             'image' => $imagePath,
         ]);
 
-        return redirect('admin/dokter')->with('success', 'Data Dokter berhasil ditambahkan');
+        return redirect('admin/dokter')->with('success', 'Doctor\'s account auccessfully created');
     }
 
     /**
@@ -153,7 +153,7 @@ class DokterController extends Controller
             'phone' => $request->phone,
             'image' => $imagePath,
         ]);
-        return redirect('admin/dokter')->with('success', 'Data Berhasil');
+        return redirect('admin/dokter')->with('success', 'Doctor\'s account successfully updated');
     }
 
     /**
@@ -163,11 +163,24 @@ class DokterController extends Controller
     {
         $data = User::with('dokter')->where('id', $id)->firstOrFail();
         // Hapus gambar jika ada
+        // if ($data->dokter->image) {
+        //     Storage::delete($data->dokter->image);
+        //     unlink(public_path($data->dokter->image));
+        // }
+
         if ($data->dokter->image) {
-            unlink(public_path($data->dokter->image));
+            $imagePath = $data->dokter->image;
+
+            // Cek apakah gambar merupakan path lokal
+            if (!filter_var($imagePath, FILTER_VALIDATE_URL)) {
+                // Hapus gambar dari storage jika itu adalah path lokal
+                Storage::delete($imagePath);
+                unlink(public_path($imagePath));
+            }
         }
+
         $data->delete();
-        return redirect('admin/dokter')->with('success', 'Data Berhasil');
+        return redirect('admin/dokter')->with('success', 'Doctor\'s account successfully deleted');
     }
 
 

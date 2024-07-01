@@ -59,19 +59,6 @@ class JanjiTemuController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    // public function edit(string $dokter_id, string $jadwal_id)
-    // {
-    //     $data = JadwalDokter::where('id', $jadwal_id)->firstOrFail();
-    //     $available_slots = JadwalDokter::where('dokter_id', $dokter_id)
-    //         ->where('status', 'Available')
-    //         ->get(['start_time', 'end_time']);
-
-    //     return view('admin.dokter.jadwal.edit', compact('data', 'dokter_id', 'available_slots'));
-    // }
-
     public function getAvailableSlots(Request $request, string $dokter_id)
     {
         $date = $request->query('date');
@@ -180,6 +167,6 @@ class JanjiTemuController extends Controller
         }
 
         // Redirect kembali ke halaman list janji temu dokter
-        return redirect('/admin/list/' . $dokter_id . '/janjitemu');
+        return redirect('/admin/list/' . $dokter_id . '/janjitemu')->with('success', 'Appointment deleted successfully');
     }
 }

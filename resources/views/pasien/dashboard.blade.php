@@ -6,7 +6,7 @@
         <div class="container">
             <h1>Welcome to Klinikku</h1>
             <h2>Solusi Kesehatan Terlengkap</h2>
-            <a href="#doctors" class="btn-get-started scrollto">Choose Dokter</a>
+            <a href="{{ url('/pasien/dokter') }}" class="btn-get-started">Choose Dokter</a>
         </div>
     </section><!-- End Hero -->
 

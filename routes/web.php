@@ -29,10 +29,6 @@ Route::middleware(['auth', 'userAkses:pasien', 'web'])->group(function () {
         return view('pasien.dashboard');
     })->name('pasien.dashboard');
 
-    Route::get('/pasien/home', function () {
-        return view('pasien.home');
-    });
-
     Route::get('/pasien/profile', [PasienProfileController::class, 'index'])->name('pasien.profile');
     Route::post('/pasien/profile', [PasienProfileController::class, 'create'])->name('pasien.profile.create');
     Route::put('/pasien/profile/{id}/update', [PasienProfileController::class, 'update'])->name('pasien.profile.update');
@@ -41,7 +37,7 @@ Route::middleware(['auth', 'userAkses:pasien', 'web'])->group(function () {
     Route::get('/get-available-slots/{doctor}', [PasienJadwalController::class, 'getAvailableSlots']);
     Route::post('/pasien/janjitemu/{doctor_id}', [PasienJanjiTemuController::class, 'store']);
     Route::get('/pasien/janjitemu', [PasienJanjiTemuController::class, 'index']);
-    Route::delete('/pasien/janjitemu/{id}/dokter/{dokter_id}', [PasienJanjiTemuController::class, 'destroy']);
+    Route::delete('/pasien/janjitemu/{id}', [PasienJanjiTemuController::class, 'destroy']);
     Route::put('/pasien/janjitemu/{id}', [PasienJanjiTemuController::class, 'update']);
     Route::get('/pasien/rekammedis', [PasienRekamMedisController::class, 'index']);
 });

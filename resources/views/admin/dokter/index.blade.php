@@ -4,8 +4,8 @@
     <section class="p-4 sm:ml-64">
         <div class="pt-8 mt-8 bg-white">
             <div class="container max-w-full mx-auto">
+                @include('components.success-flash-tw')
                 <h2 class="mb-4 text-2xl font-bold text-center text-gray-900">Doctor Table</h2>
-
                 <div class="flex flex-col mt-4 mb-4 sm:flex-row sm:justify-between">
                     <div class="flex items-center mb-2 sm:mb-0">
                         <form action="{{ url('/admin/dokter') }}" method="GET" class="flex items-center w-full sm:w-auto">
@@ -88,12 +88,15 @@
                                         <div class="flex items-center">
                                             <a href="{{ url('/admin/dokter/' . $user->id . '/edit') }}"
                                                 class="mr-4 text-indigo-600 hover:text-indigo-900">Update</a>
-                                            <form action="{{ url('/admin/dokter/' . $user->id) }}" method="POST"
-                                                class="inline">
-                                                @csrf
-                                                @method('delete')
-                                                <button class="text-red-600 hover:text-red-900">Delete</button>
-                                            </form>
+                                            <button id="deleteBtn{{ $user->id }}"
+                                                class="text-red-600 hover:text-red-900" type="button"
+                                                onclick="toggleModal('deleteModal{{ $user->id }}')">
+                                                Delete
+                                            </button>
+                                            @include('components.confirm-delete', [
+                                                'itemId' => $user->id,
+                                                'action' => '/admin/dokter/' . $user->id,
+                                            ])
                                         </div>
                                     </td>
                                 </tr>

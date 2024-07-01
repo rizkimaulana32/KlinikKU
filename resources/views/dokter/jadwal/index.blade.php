@@ -5,6 +5,7 @@
         <div class="pt-8 mt-8 bg-white">
             <div class="container max-w-full mx-auto">
                 <div class="container max-w-full mx-auto">
+                    @include('components.success-flash-tw')
                     <h2 class="mb-4 text-2xl font-bold text-center text-gray-900">Schedule Table</h2>
 
                     <div class="flex flex-col mt-4 mb-4 sm:flex-row sm:justify-between">
@@ -67,12 +68,16 @@
                                             <div class="flex items-center">
                                                 <a href="{{ url('/dokter/jadwal/' . $jadwal->id . '/edit') }}"
                                                     class="mr-4 text-indigo-600 hover:text-indigo-900">Update</a>
-                                                <form action="{{ url('/dokter/jadwal/' . $jadwal->id) }}" method="POST"
-                                                    class="inline">
-                                                    @csrf
-                                                    @method('delete')
-                                                    <button class="text-red-600 hover:text-red-900">Delete</button>
-                                                </form>
+
+                                                <button id="deleteBtn{{ $jadwal->id }}"
+                                                    class="text-red-600 hover:text-red-900" type="button"
+                                                    onclick="toggleModal('deleteModal{{ $jadwal->id }}')">
+                                                    Delete
+                                                </button>
+                                                @include('components.confirm-delete', [
+                                                    'itemId' => $jadwal->id,
+                                                    'action' => '/dokter/jadwal/' . $jadwal->id,
+                                                ])
                                             </div>
                                         </td>
                                     </tr>

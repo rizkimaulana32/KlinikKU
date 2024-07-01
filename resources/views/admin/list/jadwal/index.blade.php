@@ -4,6 +4,7 @@
     <section class="p-4 sm:ml-64">
         <div class="pt-8 mt-8 bg-white">
             <div class="container max-w-full mx-auto">
+                @include('components.success-flash-tw')
                 <div class="flex items-center justify-between mb-4">
                     <a href="{{ url('/admin/list') }}"
                         class="px-4 py-2 text-sm font-medium text-blue-700 bg-white border border-blue-700 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-blue-300">Back</a>
@@ -71,13 +72,15 @@
                                         <div class="flex items-center">
                                             <a href="{{ url('/admin/list/' . $dokter_id . '/jadwal/' . $jadwal->id . '/edit') }}"
                                                 class="mr-4 text-indigo-600 hover:text-indigo-900">Update</a>
-                                            <form
-                                                action="{{ url('/admin/list/' . $dokter_id . '/jadwal/' . $jadwal->id) }}"
-                                                method="POST" class="inline">
-                                                @csrf
-                                                @method('delete')
-                                                <button class="text-red-600 hover:text-red-900">Delete</button>
-                                            </form>
+                                            <button id="deleteBtn{{ $jadwal->id }}"
+                                                class="text-red-600 hover:text-red-900" type="button"
+                                                onclick="toggleModal('deleteModal{{ $jadwal->id }}')">
+                                                Delete
+                                            </button>
+                                            @include('components.confirm-delete', [
+                                                'itemId' => $jadwal->id,
+                                                'action' => '/admin/list/' . $dokter_id . '/jadwal/' . $jadwal->id,
+                                            ])
                                         </div>
                                     </td>
                                 </tr>

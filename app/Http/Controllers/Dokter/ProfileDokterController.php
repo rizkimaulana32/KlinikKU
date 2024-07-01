@@ -61,6 +61,6 @@ class ProfileDokterController extends Controller
 
         ]);
 
-        return redirect('dokter/profile')->with('success', 'Profil berhasil diperbarui.');
+        return redirect('dokter/profile')->with('success', 'Profile updated successfully.');
     }
 }

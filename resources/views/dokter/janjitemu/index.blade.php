@@ -4,6 +4,7 @@
     <section class="p-4 sm:ml-64">
         <div class="pt-8 mt-8 bg-white">
             <div class="container max-w-full mx-auto">
+                @include('components.success-flash-tw')
                 <div class="flex items-center justify-between mb-4">
 
                     <h2 class="flex-1 text-2xl font-bold text-center text-gray-900">Appointment Table</h2>
@@ -75,12 +76,16 @@
                                                 Medis</a>
                                             <a href="{{ url('/dokter/janjitemu/' . $janjitemu->id . '/edit') }}"
                                                 class="mr-4 text-indigo-600 hover:text-indigo-900">Update</a>
-                                            <form action="{{ url('/dokter/janjitemu/' . $janjitemu->id) }}" method="POST"
-                                                class="inline">
-                                                @csrf
-                                                @method('delete')
-                                                <button class="text-red-600 hover:text-red-900">Delete</button>
-                                            </form>
+
+                                            <button id="deleteBtn{{ $janjitemu->id }}"
+                                                class="text-red-600 hover:text-red-900" type="button"
+                                                onclick="toggleModal('deleteModal{{ $janjitemu->id }}')">
+                                                Delete
+                                            </button>
+                                            @include('components.confirm-delete', [
+                                                'itemId' => $janjitemu->id,
+                                                'action' => '/dokter/janjitemu/' . $janjitemu->id,
+                                            ])
                                         </div>
                                     </td>
                                 </tr>

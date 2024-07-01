@@ -2,24 +2,13 @@
 
 @section('content')
     <!-- ======= Doctors Section ======= -->
-    <section id="doctors" class="doctors" style="padding-top: 80px;">
-        <div class="container">
-            @if ($errors->any())
-                @foreach ($errors->all() as $error)
-                    <div class="mt-2 alert alert-danger alert-dismissible fade show" role="alert">
-                        {{ $error }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                @endforeach
-            @endif
+    <section id="doctors" class="doctors">
+        <div class="container mt-5">
+            @include('components.error-flash-bs')
 
-            @if (session('success'))
-                <div class="mt-4 alert alert-success alert-dismissible fade show" role="alert">
-                    {{ session('success') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            @endif
-
+            <div class="mt-10 section-title">
+                <h2>Dokter</h2>
+            </div>
             <div class="row">
                 @foreach ($data as $doctor)
                     <div class="mt-4 col-lg-6">
@@ -52,51 +41,52 @@
                                 <div class="modal-body">
                                     <form method="POST" action="{{ url('/pasien/janjitemu/' . $doctor->id) }}">
                                         @csrf
-                                        <div class="w-full">
-                                            <label for="date{{ $doctor->id }}"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pilih
-                                                Tanggal</label>
+                                        <div class="mb-3">
+                                            <label for="date{{ $doctor->id }}" class="form-label">Pilih Tanggal</label>
                                             <input type="date" name="date" id="date{{ $doctor->id }}"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                                required>
+                                                class="form-control @error('date') is-invalid @enderror" required>
                                             @error('date')
-                                                <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
                                             @enderror
                                         </div>
-                                        <div class="w-full mt-3">
-                                            <label for="slot{{ $doctor->id }}"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Slot
-                                                Waktu</label>
+                                        <div class="mb-3">
+                                            <label for="slot{{ $doctor->id }}" class="form-label">Slot Waktu</label>
                                             <select id="slot{{ $doctor->id }}" name="slot"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                                required>
+                                                class="form-select @error('slot') is-invalid @enderror" required>
                                                 <!-- Slot options will be filled dynamically -->
                                             </select>
+                                            @error('slot')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
-                                        <div class="mt-3 sm:col-span-2">
-                                            <label for="note{{ $doctor->id }}"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Keluhan</label>
+                                        <div class="mb-3">
+                                            <label for="note{{ $doctor->id }}" class="form-label">Keluhan</label>
                                             <textarea id="note{{ $doctor->id }}" rows="2" name="note"
-                                                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                                placeholder="Type note here" required></textarea>
+                                                class="form-control @error('note') is-invalid @enderror" placeholder="Type note here" required></textarea>
                                             @error('note')
-                                                <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
                                             @enderror
                                         </div>
-                                        <div class="w-full mt-3">
-                                            <label for="password"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password
-                                                Confirmation</label>
+                                        <div class="mb-3">
+                                            <label for="password" class="form-label">Password Confirmation</label>
                                             <input type="password" name="password" id="password"
-                                                placeholder="Type your password here"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                                required>
+                                                class="form-control @error('password') is-invalid @enderror"
+                                                placeholder="Type your password here" required>
                                             @error('password')
-                                                <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
                                             @enderror
                                         </div>
-                                        <button type="submit" class="mt-3 btn btn-primary btn-custom"
-                                            id="submitFormBtn">Submit</button>
+                                        <div class=" form-group d-flex justify-content-end">
+                                            <button type="submit" class="btn btn-primary">Buat Janji</button>
+                                        </div>
                                     </form>
                                 </div>
                             </div>

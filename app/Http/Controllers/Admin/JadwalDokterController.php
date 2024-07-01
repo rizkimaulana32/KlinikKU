@@ -62,7 +62,7 @@ class JadwalDokterController extends Controller
             'status' => $request->status,
         ]);
 
-        return redirect('/admin/list/' . $dokter_id . '/jadwal');
+        return redirect('/admin/list/' . $dokter_id . '/jadwal')->with('success', 'Doctor\'s schedule created successfully');
     }
 
 
@@ -94,7 +94,7 @@ class JadwalDokterController extends Controller
             'status' => $request->status,
         ]);
 
-        return redirect('/admin/list/' . $dokter_id . '/jadwal');
+        return redirect('/admin/list/' . $dokter_id . '/jadwal')->with('success', 'Doctor\'s schedule updated successfully');
     }
 
     /**
@@ -104,6 +104,6 @@ class JadwalDokterController extends Controller
     {
         $data = JadwalDokter::where('id', $jadwal_id)->firstOrFail();
         $data->delete();
-        return redirect('/admin/list/' . $dokter_id . '/jadwal')->with('success', 'Data Berhasil');
+        return redirect('/admin/list/' . $dokter_id . '/jadwal')->with('success', 'Doctor\'s schedule deleted successfully');
     }
 }

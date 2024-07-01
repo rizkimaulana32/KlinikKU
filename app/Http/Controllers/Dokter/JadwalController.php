@@ -52,7 +52,7 @@ class JadwalController extends Controller
             'status' => 'required',
         ]);
 
-        $data = JadwalDokter::create([
+        JadwalDokter::create([
             'dokter_id' => $dokter_id,
             'date' => $request->date,
             'start_time' => $request->start_time,
@@ -60,7 +60,7 @@ class JadwalController extends Controller
             'status' => $request->status,
         ]);
 
-        return redirect('/dokter/jadwal');
+        return redirect('/dokter/jadwal')->with('success', 'Schedule created successfully');
     }
 
     /**
@@ -86,8 +86,14 @@ class JadwalController extends Controller
     public function update(Request $request, string $id)
     {
         $data = JadwalDokter::where('id', $id)->firstOrFail();
+        $request->validate([
+            'date' => 'required',
+            'start_time' => 'required',
+            'end_time' => 'required',
+            'status' => 'required',
+        ]);
         $data->update($request->all());
-        return redirect('/dokter/jadwal');
+        return redirect('/dokter/jadwal')->with('success', 'Schedule updated successfully');
     }
 
     /**
@@ -97,6 +103,6 @@ class JadwalController extends Controller
     {
         $data = JadwalDokter::where('id', $id)->firstOrFail();
         $data->delete();
-        return redirect('/dokter/jadwal');
+        return redirect('/dokter/jadwal')->with('success', 'Schedule deleted successfully');
     }
 }

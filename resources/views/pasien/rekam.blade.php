@@ -2,12 +2,15 @@
 
 @section('content')
     <!-- Record Status Section -->
-    <section id="record" class="py-8 mt-12 ">
-        <div class="container px-4 mx-auto">
+    <section id="record">
+        <div class="container px-4 mx-auto mt-5">
             @if ($data->isEmpty())
-                <div class="mt-4 text-center text-gray-600">Anda belum memiliki rekam medis.</div>
+                <div class="flex items-center justify-center min-h-96">Anda belum memiliki rekam medis</div>
             @else
-                <div class="grid grid-cols-1 gap-6 mt-6">
+                <div class="mt-10 section-title">
+                    <h2>Rekam Medis</h2>
+                </div>
+                <div class="grid grid-cols-1 gap-6">
                     @foreach ($data as $record)
                         <div class="overflow-hidden bg-white rounded-lg shadow-md">
                             <div class="p-4">
@@ -84,11 +87,7 @@
                                                         <p class="text-gray-800">{{ $record->tindakan }}</p>
                                                     </div>
                                                 </div>
-                                                {{-- <div class="bg-gray-200 modal-footer">
-                                                    <button type="button"
-                                                        class="px-4 py-2 ml-2 text-white bg-blue-500 rounded-lg shadow hover:bg-blue-600"
-                                                        data-dismiss="modal">Cetak</button>
-                                                </div> --}}
+
                                             </div>
                                         </div>
                                     </div>

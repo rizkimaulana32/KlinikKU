@@ -3,6 +3,7 @@
 @section('content')
     <section class="p-4 sm:ml-64">
         <div class="pt-8 mt-8 bg-white">
+            @include('components.success-flash-tw')
             <div class="container max-w-full mx-auto">
                 <div class="flex flex-row mb-4">
                     <div class="basis-1/3">
@@ -40,14 +41,17 @@
                         <div class="flex justify-between mt-4">
                             <a href="{{ url('/dokter/janjitemu/' . $janji_temu_id . '/rekammedis/' . $rekammedis->id . '/edit') }}"
                                 class="inline-block px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700">Update</a>
-                            <form
-                                action="{{ url('/dokter/janjitemu/' . $janji_temu_id . '/rekammedis/' . $rekammedis->id) }}"
-                                method="POST" class="inline-block">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit"
-                                    class="px-4 py-2 ml-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700">Delete</button>
-                            </form>
+
+                            <button id="deleteBtn{{ $rekammedis->id }}"
+                                class="px-4 py-2 ml-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700"
+                                type="button" onclick="toggleModal('deleteModal{{ $rekammedis->id }}')">
+                                Delete
+                            </button>
+                            @include('components.confirm-delete', [
+                                'itemId' => $rekammedis->id,
+                                'action' =>
+                                    '/dokter/janjitemu/' . $janji_temu_id . '/rekammedis/' . $rekammedis->id,
+                            ])
                         </div>
                     </div>
                 @else

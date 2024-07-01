@@ -106,7 +106,7 @@ class PasienController extends Controller
             'address' => $request->address,
             'phone' => $request->phone,
         ]);
-        return redirect('admin/pasien')->with('success', 'Data Berhasil');
+        return redirect('admin/pasien')->with('success', 'Patient\'s account successfully updated');
     }
 
     /**
@@ -116,6 +116,6 @@ class PasienController extends Controller
     {
         $data = User::with('pasien')->where('id', $id)->firstOrFail();
         $data->delete();
-        return redirect('admin/pasien')->with('success', 'Data Berhasil');
+        return redirect('admin/pasien')->with('success', 'Patient\'s account successfully deleted');
     }
 }

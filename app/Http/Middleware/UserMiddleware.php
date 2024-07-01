@@ -23,6 +23,7 @@ class UserMiddleware
             return $next($request);
         }
 
+        Auth::logout();
         return redirect()->route('login');
     }
 }

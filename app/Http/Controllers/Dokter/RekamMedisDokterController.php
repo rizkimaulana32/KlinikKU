@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dokter;
 
 use App\Http\Controllers\Controller;
+use App\Models\JanjiTemu;
 use App\Models\RekamMedis;
 use Illuminate\Http\Request;
 
@@ -34,6 +35,8 @@ class RekamMedisDokterController extends Controller
     public function store(Request $request, string $janji_temu_id)
     {
         $rekamMedisExists = RekamMedis::where('janji_temu_id', $janji_temu_id)->exists();
+        $janjiTemu = JanjiTemu::findOrFail($janji_temu_id);
+        $pasienId = $janjiTemu->pasien_id;
 
         if ($rekamMedisExists) {
             return redirect()->back()->with('error', 'Rekam Medis for this appointment already exists.');
@@ -47,12 +50,13 @@ class RekamMedisDokterController extends Controller
 
         RekamMedis::create([
             'janji_temu_id' => $janji_temu_id,
+            'pasien_id' => $pasienId,
             'diagnosis' => $request->diagnosis,
             'obat' => $request->obat,
             'tindakan' => $request->tindakan,
         ]);
 
-        return redirect('dokter/janjitemu/' . $janji_temu_id . '/rekammedis')->with('success', 'Data Berhasil');
+        return redirect('dokter/janjitemu/' . $janji_temu_id . '/rekammedis')->with('success', 'Rekam Medis created successfully.');
     }
 
 
@@ -90,7 +94,7 @@ class RekamMedisDokterController extends Controller
             'tindakan' => $request->tindakan,
         ]);
 
-        return redirect('dokter/janjitemu/' . $janji_temu_id . '/rekammedis')->with('success', 'Data Berhasil');
+        return redirect('dokter/janjitemu/' . $janji_temu_id . '/rekammedis')->with('success', 'Rekam medis updated successfully.');
     }
 
     /**
@@ -100,6 +104,6 @@ class RekamMedisDokterController extends Controller
     {
         $data = RekamMedis::find($rekam_medis_id);
         $data->delete();
-        return redirect('dokter/janjitemu/' . $janji_temu_id . '/rekammedis')->with('success', 'Data Berhasil');
+        return redirect('dokter/janjitemu/' . $janji_temu_id . '/rekammedis')->with('success', 'Rekam Medis deleted successfully.');
     }
 }

@@ -3,24 +3,12 @@
 @section('content')
     <section id="profile">
         <div class="container mt-5">
-            @if ($errors->any())
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    @foreach ($errors->all() as $error)
-                        <p>{{ $error }}</p>
-                    @endforeach
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            @endif
-
-            @if (session('success'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{ session('success') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            @endif
-
-            <div class="p-5 bg-white rounded-lg shadow-md profile-card">
-                <div class="mb-5 text-2xl font-bold text-center">Profil Pasien</div>
+            @include('components.error-flash-bs')
+            @include('components.success-flash-bs')
+            <div class="mt-10 section-title">
+                <h2>Profile</h2>
+            </div>
+            <div class="px-5 py-2 bg-white rounded-lg shadow-md profile-card">
                 @if (!Auth::user()->pasien)
                     <form method="POST" action="{{ route('pasien.profile.create') }}">
                     @else
@@ -29,86 +17,132 @@
                 @endif
                 @csrf
 
-                <div class="mb-3">
+                <div class="mb-3 form-group">
                     <label for="name" class="form-label">Nama:</label>
-                    <input type="text" class="form-control" id="name" name="name"
-                        value="{{ $data->pasien->name ?? '' }}">
+                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
+                        name="name" value="{{ old('name', $data->pasien->name ?? '') }}">
+                    @error('name')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
 
-                <div class="mb-3">
+                <div class="mb-3 form-group">
                     <label for="birth_date" class="form-label">Tanggal Lahir:</label>
-                    <input type="date" class="form-control" id="birth_date" name="birth_date"
-                        value="{{ $data->pasien->birth_date ?? '' }}">
+                    <input type="date" class="form-control @error('birth_date') is-invalid @enderror" id="birth_date"
+                        name="birth_date" value="{{ old('birth_date', $data->pasien->birth_date ?? '') }}">
+                    @error('birth_date')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
 
-                <div class="mb-3">
+                <div class="mb-3 form-group">
                     <label for="age" class="form-label">Usia:</label>
-                    <input type="number" class="form-control" id="age" name="age"
-                        value="{{ $data->pasien->age ?? '' }}">
+                    <input type="number" class="form-control @error('age') is-invalid @enderror" id="age"
+                        name="age" value="{{ old('age', $data->pasien->age ?? '') }}">
+                    @error('age')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
 
-                <div class="mb-3">
+                <div class="mb-3 form-group">
                     <label for="gender" class="form-label">Jenis Kelamin:</label>
-                    <select class="form-select" id="gender" name="gender">
+                    <select class="form-select @error('gender') is-invalid @enderror" id="gender" name="gender">
                         @if (!Auth::user()->pasien)
                             <option value="Laki-Laki">Laki-laki</option>
                             <option value="Perempuan">Perempuan</option>
                         @else
-                            <option value="Laki-Laki" {{ $data->pasien->gender == 'Laki-Laki' ? 'selected' : '' }}>Laki-laki
+                            <option value="Laki-Laki"
+                                {{ old('gender', $data->pasien->gender) == 'Laki-Laki' ? 'selected' : '' }}>Laki-laki
                             </option>
-                            <option value="Perempuan" {{ $data->pasien->gender == 'Perempuan' ? 'selected' : '' }}>Perempuan
+                            <option value="Perempuan"
+                                {{ old('gender', $data->pasien->gender) == 'Perempuan' ? 'selected' : '' }}>Perempuan
                             </option>
                         @endif
                     </select>
+                    @error('gender')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
 
-                <div class="mb-3">
+                <div class="mb-3 form-group">
                     <label for="address" class="form-label">Alamat:</label>
-                    <input type="text" class="form-control" id="address" name="address"
-                        value="{{ $data->pasien->address ?? '' }}">
+                    <input type="text" class="form-control @error('address') is-invalid @enderror" id="address"
+                        name="address" value="{{ old('address', $data->pasien->address ?? '') }}">
+                    @error('address')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
 
-                <div class="mb-3">
+                <div class="mb-3 form-group">
                     <label for="phone" class="form-label">Nomor Telepon:</label>
-                    <input type="text" class="form-control" id="phone" name="phone"
-                        value="{{ $data->pasien->phone ?? '' }}">
+                    <input type="text" class="form-control @error('phone') is-invalid @enderror" id="phone"
+                        name="phone" value="{{ old('phone', $data->pasien->phone ?? '') }}">
+                    @error('phone')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
 
-                <div class="mb-3">
+                <div class="mb-3 form-group">
                     <label for="username" class="form-label">Username:</label>
                     @if (!Auth::user()->pasien)
                         <input type="text" class="form-control" id="username" name="username"
                             value="{{ Auth::user()->username }}" disabled>
                     @else
-                        <input type="text" class="form-control" id="username" name="username"
-                            value="{{ $data->username }}" required>
+                        <input type="text" class="form-control @error('username') is-invalid @enderror" id="username"
+                            name="username" value="{{ old('username', $data->username) }}" required>
+                        @error('username')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     @endif
                 </div>
 
-                <div class="mb-3">
+                <div class="mb-3 form-group">
                     <label for="email" class="form-label">Email:</label>
                     @if (!Auth::user()->pasien)
                         <input type="email" class="form-control" id="email" name="email"
                             value="{{ Auth::user()->email }}" disabled>
                     @else
-                        <input type="email" class="form-control" id="email" name="email"
-                            value="{{ $data->email }}" required>
+                        <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"
+                            name="email" value="{{ old('email', $data->email) }}" required>
+                        @error('email')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     @endif
                 </div>
 
-                <div class="mb-3">
+                <div class="mb-3 form-group">
                     <label for="password" class="form-label">Password:</label>
                     @if (!Auth::user()->pasien)
-                        <input type="password" class="form-control" id="password" name="password" value=""
-                            disabled>
+                        <input type="password" class="form-control" id="password" name="password" value="" disabled>
                     @else
-                        <input type="password" class="form-control" id="password" name="password"
-                            placeholder="Masukkan password baru">
+                        <input type="password" class="form-control @error('password') is-invalid @enderror"
+                            id="password" name="password" placeholder="Masukkan password baru">
                         <small class="text-muted">Kosongkan jika tidak ingin mengubah password</small>
+                        @error('password')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     @endif
                 </div>
 
-                <div class="mb-3">
+                <div class="mb-3 form-group d-flex justify-content-end">
                     <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                 </div>
                 </form>

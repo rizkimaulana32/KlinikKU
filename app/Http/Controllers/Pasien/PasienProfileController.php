@@ -31,12 +31,12 @@ class PasienProfileController extends Controller
         $user = Auth::user();
 
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'birth_date' => ['required', 'date'],
-            'gender' => ['required'],
-            'age' => ['required', 'numeric'],
-            'address' => ['required', 'string', 'max:255'],
-            'phone' => ['required', 'numeric'],
+            'name' => 'required',
+            'birth_date' => 'required',
+            'gender' => 'required',
+            'age' => 'required|numeric',
+            'address' => 'required',
+            'phone' => 'required',
         ]);
 
         Pasien::create([
