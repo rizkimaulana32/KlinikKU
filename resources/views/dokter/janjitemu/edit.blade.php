@@ -24,8 +24,6 @@
                             </option>
                             <option value="Completed" {{ $data->status == 'Completed' ? 'selected' : '' }}>Completed
                             </option>
-                            <option value="Cancelled" {{ $data->status == 'Cancelled' ? 'selected' : '' }}>Cancelled
-                            </option>
                         </select>
                     </div>
                     <div class="w-full">

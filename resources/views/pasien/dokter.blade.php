@@ -9,6 +9,15 @@
             <div class="mt-10 section-title">
                 <h2>Dokter</h2>
             </div>
+            <div class="container">
+                <form action="{{ url('/pasien/dokter') }}" method="GET" class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" name="search" aria-label="Search"
+                        id="search" value="{{ request()->search }}">
+                    <button class="btn btn-outline-primary me-2" type="submit">Search</button>
+                    <a href="{{ url('/pasien/dokter') }}" class="btn btn-outline-secondary" type="reset"
+                        id="resetButton">Reset</a>
+                </form>
+            </div>
             <div class="row">
                 @foreach ($data as $doctor)
                     <div class="mt-4 col-lg-6">

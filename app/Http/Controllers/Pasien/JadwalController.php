@@ -9,9 +9,21 @@ use Illuminate\Http\Request;
 
 class JadwalController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $data = Dokter::with('jadwalDokter')->get();
+        $search = $request->search;
+        $data = Dokter::with('jadwalDokter');
+        if ($search) {
+            $data = $data->where(function ($query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%')
+                    ->orWhere('spesialis', 'like', '%' . $search . '%')
+                    ->orWhere('gender', 'like', '%' . $search . '%')
+                    ->orWhere('age', 'like', '%' . $search . '%');
+            });
+        }
+
+        $data = $data->get();
+
         return view('pasien.dokter', compact('data'));
     }
 

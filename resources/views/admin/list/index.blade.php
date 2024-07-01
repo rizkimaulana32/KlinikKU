@@ -9,7 +9,7 @@
                 <div class="flex flex-col mt-4 mb-4 sm:flex-row sm:justify-between">
                     <div class="flex items-center mb-2 sm:mb-0">
                         <form action="{{ url('/admin/list') }}" method="GET" class="flex items-center w-full sm:w-auto">
-                            <input type="text" name="search" placeholder="Search..."
+                            <input type="text" name="search" placeholder="Search..." value="{{ request()->search }}"
                                 class="w-full px-4 py-2 text-sm text-gray-900 bg-gray-100 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-500" />
                             <button type="submit"
                                 class="ml-2.5 whitespace-nowrap rounded-lg bg-blue-700 px-4 py-2 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300">Search</button>

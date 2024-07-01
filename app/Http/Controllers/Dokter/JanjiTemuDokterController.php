@@ -85,6 +85,17 @@ class JanjiTemuDokterController extends Controller
             ->where('status', 'Available')
             ->get(['start_time', 'end_time']);
 
+        // Add previously selected slot if it is not available anymore
+        $selected_slot = JadwalDokter::where('dokter_id', $dokter_id)
+            ->where('date', $data->date)
+            ->where('start_time', $data->start_time)
+            ->where('end_time', $data->end_time)
+            ->first();
+
+        if ($selected_slot && !$available_slots->contains('start_time', $selected_slot->start_time)) {
+            $available_slots->push($selected_slot);
+        }
+
         return view('dokter.janjiTemu.edit', compact('data', 'available_slots'));
     }
 
