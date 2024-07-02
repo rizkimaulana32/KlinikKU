@@ -24,6 +24,6 @@ class UserMiddleware
         }
 
         Auth::logout();
-        return redirect()->route('login');
+        return redirect('/');
     }
 }

@@ -7,6 +7,10 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## Use Case Diagram
+
+![alt text](UsecaseDiagram.png)
+
 ## Installation
 
 1. Clone the repository:

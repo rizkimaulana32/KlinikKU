@@ -19,8 +19,7 @@
                     <div class="mb-4 appointment-card">
                         <div class="row">
                             <div class="col-md-12">
-                                <h5 class="font-bold text-center">Janji Temu
-                                    {{ date('d F Y', strtotime($janjiTemu->date)) }}</h5>
+                                <h5 class="font-bold text-center">Janji Temu - {{ $janjiTemu->dokter->name }}</h5>
                             </div>
                         </div>
                         <div class="mt-4 row">
@@ -33,8 +32,10 @@
                                 </p>
                             </div>
                             <div class="text-center col-md-6">
-                                <p class="appointment-date"><strong>Waktu:</strong>
-                                    {{ $janjiTemu->start_time }} - {{ $janjiTemu->end_time }}
+                                <p class="appointment-date"><strong>Tanggal:</strong>
+                                    {{ date('d F Y', strtotime($janjiTemu->date)) }} |
+                                    {{ date('H:i', strtotime($janjiTemu->start_time)) }} -
+                                    {{ date('H:i', strtotime($janjiTemu->end_time)) }}
                                 </p>
                             </div>
                         </div>
