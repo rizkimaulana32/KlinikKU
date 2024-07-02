@@ -9,7 +9,7 @@
 
 ## Use Case Diagram
 
-![alt text](UsecaseDiagram.png)
+![alt text](DiagramUseCase.png)
 
 ## Installation
 
